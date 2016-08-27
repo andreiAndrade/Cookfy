@@ -1,4 +1,0 @@
-References for create web service project with jersey:
-	https://jersey.java.net/documentation/latest/getting-started.html
-info: used for create project.
-__________________________________________________________________
