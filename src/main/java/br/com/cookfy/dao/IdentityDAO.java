@@ -21,4 +21,9 @@ public class IdentityDAO {
     public Identity save(Identity user) {
         return new Identity();
     }
+    
+    public boolean isValidPassword(int user_id, String hash){
+    	return true;
+    }
+    
 }

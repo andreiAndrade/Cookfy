@@ -18,4 +18,13 @@ public class UserDAO {
 	public User save(User user) {
 		return new User();
 	}
+	
+	
+	public User findByUsername(String username){
+		return new User();
+	}
+	
+	public User findByEmail(String email){
+		return new User();
+	}
 }

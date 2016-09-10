@@ -18,4 +18,9 @@ public class AuthenticationDAO {
 	public String login(String username, String hash) {
 		return UUID.randomUUID().toString();
 	}
+	
+	public void setOnlineState(int user_id, String token){
+		//do something to set state to online
+	}
+	
 }
