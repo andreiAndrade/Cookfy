@@ -1,19 +1,30 @@
 package br.com.cookfy.controller;
 
 import br.com.cookfy.dao.AuthenticationDAO;
-import br.com.cookfy.dao.SignupDAO;
-import br.com.cookfy.model.Signup;
+import br.com.cookfy.dao.IdentityDAO;
+import br.com.cookfy.dao.UserDAO;
+import br.com.cookfy.dto.SignupDTO;
+import br.com.cookfy.model.Identity;
+import br.com.cookfy.model.User;
+
+import java.util.UUID;
 
 public class SignupController {
-	
-	public String signup(Signup signup) {
-		
-		SignupDAO.getInstance().register(signup);
-		
-		String token = AuthenticationDAO.getInstance().login(signup.getUsername(), signup.getPassword());
-		
-		return token;
-		
-	}
+
+    public static String signup(SignupDTO dto) {
+
+        User user = new User(dto.getName(), dto.getUsername(), dto.getEmail());
+
+        user = UserDAO.getInstance().save(user);
+
+        Identity identity = new Identity(user.getId(), dto.getAdapter(), dto.getHash());
+
+        identity = IdentityDAO.getInstance().save(identity);
+
+        //return LoginController.login();  #tendo como premissa de que o login retorna um token
+
+        return "";
+
+    }
 
 }
