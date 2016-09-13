@@ -2,7 +2,6 @@ package br.com.cookfy.resource;
 
 import br.com.cookfy.controller.SignupController;
 import br.com.cookfy.dto.SignupDTO;
-import br.com.cookfy.model.User;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

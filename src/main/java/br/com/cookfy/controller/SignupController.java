@@ -1,13 +1,10 @@
 package br.com.cookfy.controller;
 
-import br.com.cookfy.dao.AuthenticationDAO;
 import br.com.cookfy.dao.IdentityDAO;
 import br.com.cookfy.dao.UserDAO;
 import br.com.cookfy.dto.SignupDTO;
 import br.com.cookfy.model.Identity;
 import br.com.cookfy.model.User;
-
-import java.util.UUID;
 
 public class SignupController {
 

@@ -4,15 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Andrei Andrade on 10/09/2016.
  */
 @Entity
-public class User implements Serializable{
+public class User {
 
     @Id
     @GeneratedValue

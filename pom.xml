@@ -66,13 +66,6 @@
             <version>4.9</version>
             <scope>test</scope>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.grlea.log.adapters/simple-log-sl4j -->
-        <dependency>
-            <groupId>org.grlea.log.adapters</groupId>
-            <artifactId>simple-log-sl4j</artifactId>
-            <version>1.7</version>
-        </dependency>
     </dependencies>
 
     <build>
