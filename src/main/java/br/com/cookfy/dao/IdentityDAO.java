@@ -19,11 +19,21 @@ public class IdentityDAO {
     }
 
     public Identity save(Identity user) {
+    	//session.saveOrUpdate(user);
+    	
         return new Identity();
     }
     
     public boolean isValidPassword(int user_id, String hash){
-    	return true;
+    	/**
+    	if(sessao.createQuery("From Identity where user_id=:user_id and hash=:hash")
+    			.setString("user_id", user_id)
+    			.setString("hash", hash).uniqueResult()!=null
+    			){
+    		return true;
+    	}
+    	**/
+    	return false;
     }
     
 }
