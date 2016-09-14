@@ -16,15 +16,20 @@ public class UserDAO {
 	}
 	
 	public User save(User user) {
+		//session.saveOrUpdate(user);
 		return new User();
 	}
 	
 	
 	public User findByUsername(String username){
+		//return (User) sessao.load(User.class, username);
+		
 		return new User();
 	}
 	
 	public User findByEmail(String email){
+		//return (User) sessao.load(User.class, email);
+		
 		return new User();
 	}
 }

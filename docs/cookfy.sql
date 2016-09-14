@@ -41,3 +41,5 @@ ADD CONSTRAINT `id_userID`
   ON UPDATE NO ACTION;
 ALTER TABLE `cookfy`.`authentication` 
 ADD COLUMN `status` BINARY(1) NULL AFTER `date_created`;
+ALTER TABLE `cookfy`.`user` 
+ADD COLUMN `username` VARCHAR(45) NOT NULL;
