@@ -6,9 +6,10 @@ public class AuthenticationDAO {
 	private static AuthenticationDAO instance;
 
 	private AuthenticationDAO() {
+		
 	}
 
-	public static synchronized AuthenticationDAO getInstance() {
+	public static AuthenticationDAO instance() {
 		if (instance == null) {
 			instance = new AuthenticationDAO();
 		}

@@ -11,7 +11,7 @@ public class IdentityDAO {
     private IdentityDAO() {
     }
 
-    public static synchronized IdentityDAO getInstance() {
+    public static IdentityDAO instance() {
         if (instance == null) {
             instance = new IdentityDAO();
         }

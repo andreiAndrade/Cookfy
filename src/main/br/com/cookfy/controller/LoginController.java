@@ -14,12 +14,12 @@ public class LoginController {
 		User user;
 		String token = null;
 
-		user = login.getUser().contains("@") ? UserDAO.getInstance().findByEmail(login.getUser())
-				: UserDAO.getInstance().findByUsername(login.getUser());
+		user = login.getUser().contains("@") ? UserDAO.instance().findByEmail(login.getUser())
+				: UserDAO.instance().findByUsername(login.getUser());
 
-		if (IdentityDAO.getInstance().isValidPassword(user.getId(), login.getHash())) {
+		if (IdentityDAO.instance().isValidPassword(user.getId(), login.getHash())) {
 			token = UUID.randomUUID().toString() + ";" + user.getId();
-			AuthenticationDAO.getInstance().setOnlineState(user.getId(), token);
+			AuthenticationDAO.instance().setOnlineState(user.getId(), token);
 		}
 
 		return token;

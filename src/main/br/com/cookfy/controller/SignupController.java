@@ -12,11 +12,11 @@ public class SignupController {
 
         User user = new User(dto.getName(), dto.getUsername(), dto.getEmail());
 
-        user = UserDAO.getInstance().save(user);
+        user = UserDAO.instance().save(user);
 
         Identity identity = new Identity(user.getId(), dto.getAdapter(), dto.getHash());
 
-        identity = IdentityDAO.getInstance().save(identity);
+        identity = IdentityDAO.instance().save(identity);
 
         //return LoginController.login();  #tendo como premissa de que o login retorna um token
 

@@ -1,11 +1,10 @@
 package br.com.cookfy.resource;
 
-import br.com.cookfy.controller.SignupController;
-import br.com.cookfy.dto.SignupDTO;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import br.com.cookfy.controller.SignupController;
+import br.com.cookfy.dto.SignupDTO;
 
 /**
  * Created by Andrei Andrade on 29/08/2016.
