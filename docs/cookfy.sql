@@ -49,18 +49,26 @@ ALTER TABLE `cookfy`.`user`
   CHANGE COLUMN `date_created` `date_created` DATETIME NOT NULL ,
   ADD UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   ADD UNIQUE INDEX `username_UNIQUE` (`username` ASC);
+
+ALTER TABLE `cookfy`.`identity`
+  DROP FOREIGN KEY `id_user_id`;
 ALTER TABLE `cookfy`.`identity`
   CHANGE COLUMN `user_id` `user_id` INT(11) NOT NULL ,
+  CHANGE COLUMN `adapter` `adapter` VARCHAR(45) NOT NULL ,
   CHANGE COLUMN `hash` `hash` VARCHAR(75) NOT NULL ,
   CHANGE COLUMN `date_updated` `date_updated` DATETIME NOT NULL ,
   CHANGE COLUMN `date_created` `date_created` DATETIME NOT NULL ,
-  CHANGE COLUMN `adapter` `adapter` VARCHAR(45) NOT NULL ,
   ADD UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC);
+ALTER TABLE `cookfy`.`identity`
+  ADD CONSTRAINT `id_user_id`
+FOREIGN KEY (`user_id`)
+REFERENCES `cookfy`.`user` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
 ALTER TABLE `cookfy`.`authentication`
   CHANGE COLUMN `userId` `userId` INT(11) NOT NULL ,
   CHANGE COLUMN `token` `token` VARCHAR(45) NOT NULL ,
   CHANGE COLUMN `date_created` `date_created` DATETIME NOT NULL ,
-  CHANGE COLUMN `status` `status` BINARY(1) NOT NULL ,
+  CHANGE COLUMN `status` `status` TINYINT(1) NOT NULL ,
   ADD UNIQUE INDEX `userId_UNIQUE` (`userId` ASC);
-ALTER TABLE `cookfy`.`authentication`
-  CHANGE COLUMN `status` `status` TINYINT(1) NOT NULL ;
