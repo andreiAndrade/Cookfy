@@ -6,38 +6,49 @@ import org.hibernate.Transaction;
 import br.com.cookfy.model.User;
 import br.com.cookfy.util.HibernateUtil;
 
+import javax.persistence.Query;
+import java.util.List;
+
 public class UserDAO {
-	private static UserDAO instance;
-	private Session session;
+    private static UserDAO instance;
+    private Session session;
 
-	private UserDAO() {
-		this.session = HibernateUtil.instance().getSessionFactory().openSession();
-	}
+    private UserDAO() {
+        this.session = HibernateUtil.instance().getSessionFactory().openSession();
+    }
 
-	public static UserDAO instance() {
-		if (instance == null) {
-			instance = new UserDAO();
-		}
-		return instance;
-	}
+    public static UserDAO instance() {
+        if (instance == null) {
+            instance = new UserDAO();
+        }
+        return instance;
+    }
 
-	public User save(User user) {
-		Transaction tx = session.beginTransaction();
-		session.save(user);
-		tx.commit();
-		
-		return user;
-	}
+    public User save(User user) {
+        try {
+            Transaction tx = session.beginTransaction();
+            session.save(user);
+            tx.commit();
+        } catch (Exception e) {
+            return null;
+        }
 
-	public User findByUsername(String username) {
-		// return (User) sessao.load(User.class, username);
+        return user;
+    }
 
-		return new User();
-	}
+    public User findByUsername(String username) {
+        String statment = "FROM User u WHERE u.name = :name";
+        Query query = session.createQuery(statment);
+        query.setParameter("name", username);
 
-	public User findByEmail(String email) {
-		// return (User) sessao.load(User.class, email);
+        List<User> list = query.getResultList();
+        return (list.isEmpty() || list == null) ? null : list.get(0);
 
-		return new User();
-	}
+    }
+
+    public User findByEmail(String email) {
+        // return (User) sessao.load(User.class, email);
+
+        return new User();
+    }
 }

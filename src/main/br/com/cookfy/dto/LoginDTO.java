@@ -4,30 +4,45 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class LoginDTO {
-	private String user, hash, adapter;
+    private String user, hash, adapter;
 
-	public String getAdapter() {
-		return adapter;
-	}
+    public LoginDTO() {
+    }
 
-	public void setAdapter(String adapter) {
-		this.adapter = adapter;
-	}
+    public LoginDTO(String user, String hash) {
+        this.user = user;
+        this.hash = hash;
+		this.adapter = "application";
+    }
 
-	public String getUser() {
-		return user;
-	}
+    public LoginDTO(String user, String hash, String adapter) {
+        this.user = user;
+        this.hash = hash;
+        this.adapter = adapter;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+    public String getAdapter() {
+        return adapter;
+    }
 
-	public String getHash() {
-		return hash;
-	}
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
+    }
 
-	public void setHash(String hash) {
-		this.hash = hash;
-	}
-	
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
 }

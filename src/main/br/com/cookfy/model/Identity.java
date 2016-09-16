@@ -37,6 +37,8 @@ public class Identity {
         this.userId = userId;
         this.adapter = adapter;
         this.hash = hash;
+        this.dateCreated = new Date();
+        this.dateUpdated = new Date();
     }
 
     public int getId() {
