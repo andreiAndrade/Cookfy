@@ -26,9 +26,10 @@ REFERENCES `cookfy`.`user` (`id`)
   ON UPDATE NO ACTION;
 CREATE TABLE `cookfy`.`authentication` (
   `id` INT NOT NULL,
-  `userId` INT NULL,
-  `token` VARCHAR(45) NULL,
-  `date_created` DATETIME NULL,
+  `userId` INT(11) NOT NULL ,
+  `token` VARCHAR(45) NOT NULL ,
+  `date_created` DATETIME NOT NULL ,
+  `status` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`));
 ALTER TABLE `cookfy`.`authentication`
   ADD INDEX `id_userID_idx` (`userId` ASC);
@@ -39,7 +40,7 @@ REFERENCES `cookfy`.`user` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
 ALTER TABLE `cookfy`.`authentication`
-  ADD COLUMN `status` BINARY(1) NULL AFTER `date_created`;
+  ADD UNIQUE INDEX `userId_UNIQUE` (`userId` ASC);
 ALTER TABLE `cookfy`.`user`
   ADD COLUMN `username` VARCHAR(45) NOT NULL;
 ALTER TABLE `cookfy`.`user`
@@ -65,10 +66,3 @@ FOREIGN KEY (`user_id`)
 REFERENCES `cookfy`.`user` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
-
-ALTER TABLE `cookfy`.`authentication`
-  CHANGE COLUMN `userId` `userId` INT(11) NOT NULL ,
-  CHANGE COLUMN `token` `token` VARCHAR(45) NOT NULL ,
-  CHANGE COLUMN `date_created` `date_created` DATETIME NOT NULL ,
-  CHANGE COLUMN `status` `status` TINYINT(1) NOT NULL ,
-  ADD UNIQUE INDEX `userId_UNIQUE` (`userId` ASC);
