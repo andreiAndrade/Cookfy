@@ -1,12 +1,12 @@
 package br.com.cookfy.resource;
 
+import br.com.cookfy.controller.SignupController;
+import br.com.cookfy.dto.SignupDTO;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-
-import br.com.cookfy.controller.SignupController;
-import br.com.cookfy.dto.SignupDTO;
 
 /**
  * Created by Andrei Andrade on 29/08/2016.
@@ -17,8 +17,14 @@ public class SignupResource {
     @Consumes("application/json")
     @Produces("application/json")
     public String signup(SignupDTO dto) {
-        String token = SignupController.signup(dto);
-        return token;
+        SignupController signupController = new SignupController();
+        signupController.signup(dto);
+
+        if (!signupController.isSignupSuccess()) {
+            return signupController.getErrorMessage();
+        } else {
+            return signupController.getToken();
+        }
     }
 
 
