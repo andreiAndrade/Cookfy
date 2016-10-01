@@ -66,3 +66,127 @@ FOREIGN KEY (`user_id`)
 REFERENCES `cookfy`.`user` (`id`)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION;
+
+CREATE TABLE `cookfy`.`recipes` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `description` VARCHAR(1000) NULL,
+  `execution_time` VARCHAR(45) NULL,
+  `difficulty` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `cookfy`.`igredients` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `desctiption` VARCHAR(45) NULL,
+  `nutritional_information` VARCHAR(120) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `cookfy`.`igredients2recipes` (
+  `igredient_id` INT NOT NULL,
+  `recipes_id` INT NOT NULL,
+  PRIMARY KEY (`igredient_id`, `recipes_id`));
+
+ALTER TABLE `cookfy`.`igredients2recipes` 
+ADD INDEX `id_idx` (`recipes_id` ASC);
+ALTER TABLE `cookfy`.`igredients2recipes` 
+ADD CONSTRAINT `id_recipes_id`
+  FOREIGN KEY (`recipes_id`)
+  REFERENCES `cookfy`.`recipes` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_igredients_id`
+  FOREIGN KEY (`igredient_id`)
+  REFERENCES `cookfy`.`igredients` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+CREATE TABLE `cookfy`.`category` (
+  `id` INT NOT NULL,
+  `nome` VARCHAR(45) NULL,
+  `descricao` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `cookfy`.`recipes2category` (
+  `recipes_id` INT NOT NULL,
+  `category_id` INT NOT NULL,
+  PRIMARY KEY (`recipes_id`, `category_id`));
+
+ALTER TABLE `cookfy`.`recipes2category` 
+ADD INDEX `id_category_id_idx` (`category_id` ASC);
+ALTER TABLE `cookfy`.`recipes2category` 
+ADD CONSTRAINT `id_recipes2category_id`
+  FOREIGN KEY (`recipes_id`)
+  REFERENCES `cookfy`.`recipes` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_category_id`
+  FOREIGN KEY (`category_id`)
+  REFERENCES `cookfy`.`category` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+CREATE TABLE `cookfy`.`recipebook` (
+  `id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE `cookfy`.`recipebook2user` (
+  `recipebook_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`recipebook_id`, `user_id`));
+
+ALTER TABLE `cookfy`.`recipebook2user` 
+ADD INDEX `id_user2recipebook_id_idx` (`user_id` ASC);
+ALTER TABLE `cookfy`.`recipebook2user` 
+ADD CONSTRAINT `id_recipebook2user_id`
+  FOREIGN KEY (`recipebook_id`)
+  REFERENCES `cookfy`.`recipebook` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_user2recipebook_id`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `cookfy`.`user` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+  CREATE TABLE `cookfy`.`recipe2recipebook` (
+  `recipe_id` INT NULL,
+  `recipebook_id` INT NULL,
+  PRIMARY KEY (`recipe_id`, `recipebook_id`));
+
+ALTER TABLE `cookfy`.`recipe2recipebook` 
+ADD INDEX `id_recipebook2recipe_id_idx` (`recipebook_id` ASC);
+ALTER TABLE `cookfy`.`recipe2recipebook` 
+ADD CONSTRAINT `id_recipe2recipebook_id`
+  FOREIGN KEY (`recipe_id`)
+  REFERENCES `cookfy`.`recipes` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_recipebook2recipe_id`
+  FOREIGN KEY (`recipebook_id`)
+  REFERENCES `cookfy`.`recipebook` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+CREATE TABLE `cookfy`.`user2recipe` (
+  `user_id` INT NULL,
+  `recipe_id` INT NULL,
+  PRIMARY KEY (`user_id`, `recipe_id`));
+
+ALTER TABLE `cookfy`.`user2recipe` 
+ADD INDEX `id_recipe2user_id_idx` (`recipe_id` ASC);
+ALTER TABLE `cookfy`.`user2recipe` 
+ADD CONSTRAINT `id_user2recipe_id`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `cookfy`.`user` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `id_recipe2user_id`
+  FOREIGN KEY (`recipe_id`)
+  REFERENCES `cookfy`.`recipes` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+
