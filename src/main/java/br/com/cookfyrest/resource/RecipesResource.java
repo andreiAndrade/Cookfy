@@ -2,6 +2,7 @@ package br.com.cookfyrest.resource;
 
 import br.com.cookfyrest.model.Recipe;
 
+import javax.annotation.ManagedBean;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
