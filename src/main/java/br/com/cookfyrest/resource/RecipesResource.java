@@ -3,10 +3,7 @@ package br.com.cookfyrest.resource;
 import br.com.cookfyrest.entity.Recipe;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Andrei Andrade on 02/10/2016.
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RecipesResource {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{recId}", produces = MediaType.APPLICATION_JSON_VALUE )
-    public Recipe findRecipe(@RequestParam(value = "recId") Long recId) {
+    public Recipe findRecipe(@PathVariable("recId") Long recId) {
         Recipe recipe = new Recipe();
         recipe.setId(recId);
         recipe.setName("Bolo");
