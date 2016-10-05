@@ -1,1 +1,1 @@
-web: sh target/bin/cookfyrest-1.0-SNAPSHOT
+web: sh target/cookfyrest-1.0-SNAPSHOT
