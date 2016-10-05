@@ -7,6 +7,8 @@ import br.com.cookfyrest.entity.User;
 import br.com.cookfyrest.util.HibernateUtil;
 import org.hibernate.Session;
 
+import java.util.Date;
+
 public class SignupController {
 //
 //	private ErrorDTO error;
@@ -115,4 +117,16 @@ public class SignupController {
 //        System.exit(0);
 //    }
 //
+    public static User buildUser(SignupDTO signupDTO) {
+        User user = new User();
+        user.setName(signupDTO.getName());
+        user.setUsername(signupDTO.getUsername());
+        user.setEmail(signupDTO.getEmail());
+        user.setAdapter(signupDTO.getAdapter());
+        user.setHash(signupDTO.getHash());
+        user.setDateCreated(new Date());
+        user.setDateUpdated(new Date());
+
+        return user;
+    }
 }
