@@ -5,12 +5,12 @@ package br.com.cookfyrest.dto;
  */
 public class AuthenticationDTO {
     private String token;
-    private int id;
+    private Long id;
 
     public AuthenticationDTO() {
     }
 
-    public AuthenticationDTO(String token, int id) {
+    public AuthenticationDTO(String token, Long id) {
         this.token = token;
         this.id = id;
     }
@@ -23,11 +23,11 @@ public class AuthenticationDTO {
         this.token = token;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

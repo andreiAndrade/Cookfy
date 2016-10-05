@@ -1,6 +1,6 @@
 package br.com.cookfyrest.dao;
 
-import br.com.cookfyrest.model.Identity;
+import br.com.cookfyrest.entity.Identity;
 import br.com.cookfyrest.util.HibernateUtil;
 import org.hibernate.Session;
 
@@ -37,7 +37,7 @@ public class IdentityDAO {
         return null;
     }
 
-    public boolean isValidPassword(int userId, String hash) {
+    public boolean isValidPassword(Long userId, String hash) {
 //        String statment = "FROM Identity i WHERE i.userId = :userId";
 //        Query query = session.createQuery(statment);
 //        query.setParameter("userId", userId);

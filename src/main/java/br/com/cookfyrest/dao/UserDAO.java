@@ -1,6 +1,6 @@
 package br.com.cookfyrest.dao;
 
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.entity.User;
 import br.com.cookfyrest.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

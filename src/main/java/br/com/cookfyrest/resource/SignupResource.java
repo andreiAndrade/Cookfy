@@ -19,6 +19,6 @@ public class SignupResource {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public AuthenticationDTO signup(SignupDTO signup) {
-        return new AuthenticationDTO("token", 1);
+        return new AuthenticationDTO("token", 1L);
     }
 }

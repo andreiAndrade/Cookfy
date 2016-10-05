@@ -20,6 +20,6 @@ public class LoginResource {
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public AuthenticationDTO getLogin(@RequestBody LoginDTO loginDTO) {
 
-        return new AuthenticationDTO("token", 1);
+        return new AuthenticationDTO("token", 1L);
     }
 }

@@ -6,8 +6,8 @@ import br.com.cookfyrest.dto.AuthenticationDTO;
 import br.com.cookfyrest.dto.ErrorDTO;
 import br.com.cookfyrest.dto.LoginDTO;
 import br.com.cookfyrest.dto.SignupDTO;
-import br.com.cookfyrest.model.Identity;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.entity.Identity;
+import br.com.cookfyrest.entity.User;
 import br.com.cookfyrest.util.HibernateUtil;
 import org.hibernate.Session;
 
