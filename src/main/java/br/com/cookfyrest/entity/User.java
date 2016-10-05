@@ -1,13 +1,17 @@
 package br.com.cookfyrest.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Andrei Andrade on 10/09/2016.
  */
 @Entity
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,13 +23,23 @@ public class User {
 
     private String email;
 
-    @Column(name = "date_created")
+    private String hash;
+
+    private String adapter;
+
+    @Column(name = "DATE_CREATED")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @Column(name = "date_updated")
+    @Column(name = "DATE_UPDATED")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
-    public User() {}
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<RecipeBook> recipeBooks;
+
+    public User() {
+    }
 
     public User(String name, String username, String email) {
         this.name = name;
@@ -81,5 +95,37 @@ public class User {
 
     public void setDateUpdated(Date dateUpdated) {
         this.dateUpdated = dateUpdated;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(String adapter) {
+        this.adapter = adapter;
+    }
+
+    public List<RecipeBook> getRecipeBooks() {
+        return recipeBooks;
+    }
+
+    public void setRecipeBooks(List<RecipeBook> recipeBooks) {
+        this.recipeBooks = recipeBooks;
+    }
+
+    public void addRecipeBook(RecipeBook recipeBook) {
+        if(Objects.isNull(this.recipeBooks)) {
+            this.recipeBooks = new ArrayList<>();
+        }
+        this.recipeBooks.add(recipeBook);
+        recipeBook.setUser(this);
     }
 }

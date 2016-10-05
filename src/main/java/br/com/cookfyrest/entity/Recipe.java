@@ -1,11 +1,15 @@
 package br.com.cookfyrest.entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
-public class Recipe {
+public class Recipe implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -14,10 +18,24 @@ public class Recipe {
 
     private String description;
 
-    @Column(name = "execution_time")
+    @Column(name = "EXECUTION_TIME")
     private String executionTime;
 
     private String difficulty;
+
+    @ManyToMany
+    @JoinTable(
+            name = "RECIPE_RECIPEBOOK",
+            joinColumns = {
+                    @JoinColumn(name = "RECIPE_ID")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "RECIPEBOOK_ID")})
+    private List<RecipeBook> recipeBooks;
+
+    private String igredients;
+
+    @Column(name = "CATEGORIES_TAG")
+    private String categoriesTag;
 
     public Long getId() {
         return id;
@@ -57,5 +75,36 @@ public class Recipe {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public List<RecipeBook> getRecipeBooks() {
+        return recipeBooks;
+    }
+
+    public void setRecipeBooks(List<RecipeBook> recipeBooks) {
+        this.recipeBooks = recipeBooks;
+    }
+
+    public void addRecipeBook(RecipeBook recipeBook) {
+        if(Objects.isNull(this.recipeBooks)) {
+            this.recipeBooks = new ArrayList<>();
+        }
+        this.recipeBooks.add(recipeBook);
+    }
+
+    public String getIgredients() {
+        return igredients;
+    }
+
+    public void setIgredients(String igredients) {
+        this.igredients = igredients;
+    }
+
+    public String getCategoriesTag() {
+        return categoriesTag;
+    }
+
+    public void setCategoriesTag(String categoriesTag) {
+        this.categoriesTag = categoriesTag;
     }
 }

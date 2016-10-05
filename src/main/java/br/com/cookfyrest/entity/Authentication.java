@@ -3,28 +3,34 @@ package br.com.cookfyrest.entity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Authentication {
+public class Authentication implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long userID;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private User user;
 
     private String token;
 
-    @Column(name = "date_created")
+    @Column(name = "DATE_CREATED")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @Type(type = "org.hibernate.type.NumericBooleanType")
+    @Column(name = "DATE_UPDATED")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateUpdated;
+
     private Boolean status;
 
     public Authentication() {}
 
-    public Authentication(Long userID, String token) {
-        this.userID = userID;
+    public Authentication(User user, String token) {
+        this.user = user;
         this.token = token;
         this.status = true;
         this.dateCreated = new Date();
@@ -38,12 +44,12 @@ public class Authentication {
         this.id = id;
     }
 
-    public Long getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getToken() {
@@ -60,6 +66,14 @@ public class Authentication {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
     }
 
     public Boolean getStatus() {
