@@ -1,44 +1,27 @@
 package br.com.cookfyrest;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.io.IOException;
-import java.net.URI;
+@SpringBootApplication
+@EntityScan(basePackages = {
+        "br.com.cookfyrest.entity"
+})
+@EnableJpaRepositories(basePackages = {
+        "br.com.cookfyrest.service"
+})
+public class Main extends SpringBootServletInitializer {
 
-/**
- * Main class.
- *
- */
-public class Main {
-    // Base URI the Grizzly HTTP server will listen on
-    public static final String BASE_URI = "http://localhost:8080/cookfy/";
-
-    /**
-     * Starts Grizzly HTTP server exposing JAX-RS resources defined in this application.
-     * @return Grizzly HTTP server.
-     */
-    public static HttpServer startServer() {
-        // create a resource config that scans for JAX-RS resource and providers
-        // in br.com.cookfyrest.resource package
-        final ResourceConfig rc = new ResourceConfig().packages("br.com.cookfyrest.resource");
-
-        // create and start a new instance of grizzly http server
-        // exposing the Jersey application at BASE_URI
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Main.class);
     }
 
-    /**
-     * Main method.
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        final HttpServer server = startServer();
-        System.out.println(String.format("Servidor Rodando...\nPressione Qualquer Tecla para Finalizar", BASE_URI));
-        System.in.read();
-        server.stop();
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Main.class, args);
     }
 }
-

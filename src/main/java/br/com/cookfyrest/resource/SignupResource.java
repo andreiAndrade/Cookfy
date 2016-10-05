@@ -2,35 +2,23 @@ package br.com.cookfyrest.resource;
 
 import br.com.cookfyrest.dto.AuthenticationDTO;
 import br.com.cookfyrest.dto.SignupDTO;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * Created by Andrei Andrade on 29/08/2016.
  */
-@Path("signup")
+@RestController
+@EnableAutoConfiguration
+@RequestMapping(value = "/signup")
 public class SignupResource {
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response signup(SignupDTO signup) {
 
-        AuthenticationDTO authentication = new AuthenticationDTO("token", 1);
-        return Response.ok(authentication).build();
-
-//        SignupController signupController = new SignupController();
-//        signupController.signup(signup);
-//
-//        if (signupController.isSignupSuccess()) {
-//        	return Response.ok(signupController.getAuthenticationDTO()).build();
-//        } else {
-//        	System.out.println("Erro ao cadastrar!");
-//        	return Response.status(Status.BAD_REQUEST).entity(signupController.getError()).build();
-//        }
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public AuthenticationDTO signup(SignupDTO signup) {
+        return new AuthenticationDTO("token", 1);
     }
 }

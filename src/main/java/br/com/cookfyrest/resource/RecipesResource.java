@@ -1,32 +1,31 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.model.Recipe;
-
-import javax.annotation.ManagedBean;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import br.com.cookfyrest.entity.Recipe;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Andrei Andrade on 02/10/2016.
  */
-@Path("recipes")
+@RestController
+@EnableAutoConfiguration
+@RequestMapping(value = "/recipes")
 public class RecipesResource {
-    @GET
-    @Path("{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response recipesDetail(@PathParam("id") Integer id) {
+
+    @RequestMapping(method = RequestMethod.GET, value = "/{recId}", produces = MediaType.APPLICATION_JSON_VALUE )
+    public Recipe findRecipe(@RequestParam(value = "recId") Long recId) {
         Recipe recipe = new Recipe();
-        recipe.setId(id);
+        recipe.setId(recId);
         recipe.setName("Bolo");
         recipe.setDescription("Modo de preparo: misture os ingredientes, asse e coma!");
         recipe.setDifficulty("Fácil");
         recipe.setExecutionTime("2h");
 
-        return Response.ok(recipe).build();
+        return recipe;
     }
 
 }
