@@ -1,66 +1,33 @@
 package br.com.cookfyrest.controller;
 
+import br.com.cookfyrest.dao.AuthenticationDAO;
+import br.com.cookfyrest.dao.UserDAO;
 import br.com.cookfyrest.dto.AuthenticationDTO;
-import br.com.cookfyrest.dto.ErrorDTO;
-import br.com.cookfyrest.entity.User;
-import br.com.cookfyrest.util.HibernateUtil;
-import org.hibernate.Session;
+import br.com.cookfyrest.model.Authentication;
+import br.com.cookfyrest.model.User;
+
+import java.util.Date;
+import java.util.UUID;
 
 public class LoginController {
-//
-//    private AuthenticationDTO authenticationDTO;
-//    private ErrorDTO error;
-//    private boolean loginSuccess;
-//
-//    public LoginController() {
-//        this.error = new ErrorDTO();
-//        this.loginSuccess = false;
-//        this.authenticationDTO = null;
-//    }
-//
-//    public AuthenticationDTO getAuthenticationDTO() {
-//        return this.authenticationDTO;
-//    }
-//
-//    public ErrorDTO getError() {
-//        return this.error;
-//    }
-//
-//    public boolean isLoginSuccess() {
-//        return this.loginSuccess;
-//    }
-//
-//    public void login(LoginDTO login) {
-//    	System.out.println("Logando!");
-//        User user = null;
-//
-////        user = login.getUser().contains("@") ? UserDAO.instance().findByEmail(login.getUser())
-////                : UserDAO.instance().findByUsername(login.getUser());
-//
-//        if (user == null) {
-//            error.setErrorMessage("Usuário ou senha inválidos!");
-//            loginSuccess = false;
-//        } else {
-////            if (IdentityDAO.instance().isValidPassword(user.getId(), login.getHash())) {
-////
-////                String token = UUID.randomUUID().toString().replace("-", "") + new Date().getTime();
-////                Authentication authentication = new Authentication(user.getId(), token);
-////                authentication = AuthenticationDAO.instance().setOnlineState(authentication);
-////
-////                if (authentication != null) {
-////                    authenticationDTO = new AuthenticationDTO();
-////                    authenticationDTO.setToken(authentication.getToken());
-////                    authenticationDTO.setId(user.getId());
-////                } else {
-////                    error.setErrorMessage("Erro inesperado ao efetuar o login!");
-////                    loginSuccess = false;
-////                }
-////            } else {
-////                error.setErrorMessage("Usuário ou senha inválidos!");
-////                loginSuccess = false;
-////            }
-//        }
-//    }
+    public AuthenticationDTO login(String login, String hash) {
+        User user = UserDAO.instance().findByUsernameOrEmail(login);
+
+        if (user.getHash().equals(hash)) {
+            return authenticate(user);
+        }
+
+        return null;
+    }
+
+    public AuthenticationDTO authenticate(User user) {
+        String token = UUID.randomUUID().toString().replace("-", "") + new Date().getTime();
+        Authentication authentication = new Authentication(user, token);
+        AuthenticationDAO.instance().save(authentication);
+
+        return new AuthenticationDTO(token, user.getId());
+    }
+
 //
 //    public static void main(String[] args) {
 //        Session s = HibernateUtil.instance().getSessionFactory().openSession();

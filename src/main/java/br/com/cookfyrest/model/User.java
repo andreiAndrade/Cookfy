@@ -1,4 +1,4 @@
-package br.com.cookfyrest.entity;
+package br.com.cookfyrest.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,8 +19,10 @@ public class User implements Serializable {
 
     private String name;
 
+    @Column(unique = true)
     private String username;
 
+    @Column(unique = true)
     private String email;
 
     private String hash;

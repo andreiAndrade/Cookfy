@@ -1,4 +1,4 @@
-package br.com.cookfyrest.entity;
+package br.com.cookfyrest.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
