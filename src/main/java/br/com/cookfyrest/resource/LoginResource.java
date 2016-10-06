@@ -18,9 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginResource {
 
     @RequestMapping(method = RequestMethod.GET,
-            consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public AuthenticationDTO login(@RequestParam(value = "user") String login,
+    public AuthenticationDTO login(@RequestParam(value = "login") String login,
                                       @RequestParam(value = "hash") String hash) {
         LoginController loginController = new LoginController();
         return loginController.login(login, hash);

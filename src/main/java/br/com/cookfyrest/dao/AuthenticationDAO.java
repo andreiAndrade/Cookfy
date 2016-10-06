@@ -1,6 +1,7 @@
 package br.com.cookfyrest.dao;
 
 import br.com.cookfyrest.model.Authentication;
+import br.com.cookfyrest.util.HibernateUtil;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -20,13 +21,18 @@ public class AuthenticationDAO {
     }
 
     private AuthenticationDAO() {
-        this.em = Persistence.createEntityManagerFactory("pu_cookfy").createEntityManager();
+        this.em = HibernateUtil.instance().getEntityManager();
     }
 
     public void save(Authentication authentication) {
-        this.em.getTransaction().begin();
-        this.em.merge(authentication);
-        this.em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(authentication);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.clear();
+            throw e;
+        }
     }
 
     public void delete(Authentication authentication) {

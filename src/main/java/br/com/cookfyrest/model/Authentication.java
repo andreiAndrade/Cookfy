@@ -32,6 +32,7 @@ public class Authentication implements Serializable{
         this.token = token;
         this.status = true;
         this.dateCreated = new Date();
+        this.dateUpdated = new Date();
     }
 
     public Long getId() {

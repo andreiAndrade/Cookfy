@@ -1,6 +1,7 @@
 package br.com.cookfyrest.dao;
 
 import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.util.HibernateUtil;
 
 import javax.persistence.*;
 
@@ -12,7 +13,7 @@ public class UserDAO {
     private EntityManager em;
 
     private UserDAO() {
-        this.em = Persistence.createEntityManagerFactory("pu_cookfy").createEntityManager();
+        this.em = HibernateUtil.instance().getEntityManager();
     }
 
     public static UserDAO instance() {
@@ -23,9 +24,14 @@ public class UserDAO {
     }
 
     public void save(User user) {
-        em.getTransaction().begin();
-        em.merge(user);
-        em.getTransaction().commit();
+        try {
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.clear();
+            throw e;
+        }
     }
 
     public User findByUsernameOrEmail(String user) {
