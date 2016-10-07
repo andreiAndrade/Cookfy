@@ -4,7 +4,49 @@
 <title>Cookfy</title>
 </head>
 <body>
-	<h1>Hello, welcome to the future!</h1>
+	https://cookfy-andreiandrade.c9users.io/cookfy/login?user=value&hash=value<br>
+    <br>
+    method: GET<br>
+    request:<br>
+    {<br>
+    	"user" : "username ou email",<br>
+    	"hash" : "senha criptografada",<br>
+    	"adapter" : "application"<br>
+    }<br>
+    success response:<br>
+    {<br>
+    	"id" : id_user,<br>
+    	"token" : "token"<br>
+    }<br>
+    <br>
+    https://cookfy-andreiandrade.c9users.io/cookfy/signup<br>
+    method: POST<br>
+    request:<br>
+    {<br>
+		"name" : "name",<br>
+		"username" : "andrei",<br>
+		"email" : "andrei",<br>
+		"hash" : "hash",<br>
+		"adapter" : "application"<br>
+	}<br>
+    success response:<br>
+    {<br>
+    	"id" : id_user,<br>
+    	"token" : "token"<br>
+    }<br>
+    <br>
+    https://cookfy-andreiandrade.c9users.io/cookfy/recipes/{recId}<br>
+    method: GET<br>
+    request:<br>
+    success response:<br>
+    {<br>
+    	"id" : id_user,<br>
+    	"name" : "",
+    	"description" : "",<br>
+    	"executionTime" : "",<br>
+    	"difficulty" : "",<br>
+    	"ingredientes" : "",<br>
+    	"recipeBooks" : [],<br>
+    }<br>
 </body>
 </html>
-
