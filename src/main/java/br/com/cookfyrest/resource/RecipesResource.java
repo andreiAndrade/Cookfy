@@ -31,4 +31,10 @@ public class RecipesResource {
         return recipeController.list().get(0);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{bookId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Recipe> listRecipesOfBook(){
+    	RecipeController recipeController = new RecipeController();
+        return recipeController.list();
+    }
+    
 }
