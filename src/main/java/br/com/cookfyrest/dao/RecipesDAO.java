@@ -28,13 +28,17 @@ public class RecipesDAO {
 		return instance;
 	}
 
+	/**
 	public Recipe findRecipesByName(String name) {
 		return new Recipe();
 	}
-
+	
+	
 	public List<Recipe> findRecipesByToken(String token) {
 		return new ArrayList<Recipe>();
 	}
+	*/
+
 
 	public Recipe findRecipeById(int id) {
 		String statement = "* FROM recipe where id = :id";

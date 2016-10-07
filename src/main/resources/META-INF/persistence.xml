@@ -19,7 +19,7 @@
 			<property name="hibernate.use_sql_comments" value="true" />
 
 			<!-- Sets the database creation type on each server run -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 	</persistence-unit>
 </persistence>
