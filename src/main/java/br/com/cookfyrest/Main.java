@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "br.com.cookfyrest.model"
 })
 @EnableJpaRepositories(basePackages = {
-        "br.com.cookfyrest.service"
+        "br.com.cookfyrest.repository"
 })
 public class Main extends SpringBootServletInitializer {
 

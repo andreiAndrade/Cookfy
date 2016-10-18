@@ -17,6 +17,7 @@ public class Recipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     private String description;
