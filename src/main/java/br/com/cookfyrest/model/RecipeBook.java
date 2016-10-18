@@ -11,8 +11,13 @@ import java.util.Objects;
  */
 @Entity
 public class RecipeBook implements Serializable {
+
+    @Transient
+    private static final String SEQ = "seq_recipe_book";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
     private String name;
@@ -56,7 +61,7 @@ public class RecipeBook implements Serializable {
     }
 
     public void addRecipe(Recipe recipe) {
-        if(Objects.isNull(this.recipes)) {
+        if (Objects.isNull(this.recipes)) {
             this.recipes = new ArrayList<>();
         }
         this.recipes.add(recipe);

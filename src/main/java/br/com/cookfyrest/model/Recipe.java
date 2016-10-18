@@ -10,8 +10,11 @@ import java.util.Objects;
 @Entity
 public class Recipe implements Serializable {
 
+    @Transient
+    private static final String SEQ = "seq_recipe";
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
     private String name;

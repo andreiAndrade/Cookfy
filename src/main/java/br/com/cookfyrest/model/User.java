@@ -13,8 +13,12 @@ import java.util.Objects;
 @Entity
 public class User implements Serializable {
 
+    @Transient
+    private static final String SEQ = "seq_user";
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
     private String name;

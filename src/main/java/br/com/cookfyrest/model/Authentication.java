@@ -6,8 +6,12 @@ import java.util.Date;
 
 @Entity
 public class Authentication implements Serializable{
+
+    @Transient
+    private static final String SEQ = "seq_authentication";
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
