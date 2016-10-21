@@ -1,7 +1,12 @@
 package br.com.cookfyrest.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.voodoodyne.jackson.jsog.JSOGGenerator;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +16,8 @@ import java.util.Objects;
  * Created by Andrei Andrade on 10/09/2016.
  */
 @Entity
+@JsonIdentityInfo(generator = JSOGGenerator.class)
+@XmlRootElement
 public class User implements Serializable {
 
     @Transient
@@ -42,7 +49,10 @@ public class User implements Serializable {
     private Date dateUpdated;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<RecipeBook> recipeBooks;
+    private List<RecipeBook> myRecipeBooks;
+
+    @OneToMany(mappedBy = "chef", cascade = CascadeType.ALL)
+    private List<Recipe> myRecipes;
 
     public User() {
     }
@@ -119,19 +129,63 @@ public class User implements Serializable {
         this.adapter = adapter;
     }
 
-    public List<RecipeBook> getRecipeBooks() {
-        return recipeBooks;
+    public List<RecipeBook> getMyRecipeBooks() {
+        return myRecipeBooks;
     }
 
-    public void setRecipeBooks(List<RecipeBook> recipeBooks) {
-        this.recipeBooks = recipeBooks;
+    public void setMyRecipeBooks(List<RecipeBook> myRecipeBooks) {
+        this.myRecipeBooks = myRecipeBooks;
     }
 
     public void addRecipeBook(RecipeBook recipeBook) {
-        if(Objects.isNull(this.recipeBooks)) {
-            this.recipeBooks = new ArrayList<>();
+        if (Objects.isNull(this.myRecipeBooks)) {
+            this.myRecipeBooks = new ArrayList<>();
         }
-        this.recipeBooks.add(recipeBook);
+        this.myRecipeBooks.add(recipeBook);
         recipeBook.setUser(this);
+    }
+
+    public List<Recipe> getMyRecipes() {
+        return myRecipes;
+    }
+
+    public void setMyRecipes(List<Recipe> myRecipes) {
+        this.myRecipes = myRecipes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (hash != null ? !hash.equals(user.hash) : user.hash != null) return false;
+        if (adapter != null ? !adapter.equals(user.adapter) : user.adapter != null) return false;
+        if (dateCreated != null ? !dateCreated.equals(user.dateCreated) : user.dateCreated != null) return false;
+        if (dateUpdated != null ? !dateUpdated.equals(user.dateUpdated) : user.dateUpdated != null) return false;
+        if (myRecipeBooks != null ? !myRecipeBooks.equals(user.myRecipeBooks) : user.myRecipeBooks != null)
+            return false;
+        return myRecipes != null ? myRecipes.equals(user.myRecipes) : user.myRecipes == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (hash != null ? hash.hashCode() : 0);
+        result = 31 * result + (adapter != null ? adapter.hashCode() : 0);
+        result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
+        result = 31 * result + (dateUpdated != null ? dateUpdated.hashCode() : 0);
+        result = 31 * result + (myRecipeBooks != null ? myRecipeBooks.hashCode() : 0);
+        result = 31 * result + (myRecipes != null ? myRecipes.hashCode() : 0);
+        return result;
     }
 }

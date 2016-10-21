@@ -1,4 +1,4 @@
-package br.com.cookfyrest.dto;
+package br.com.cookfy.dto;
 
 public class ErrorDTO {
 	private String errorMessage;

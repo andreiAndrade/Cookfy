@@ -6,33 +6,28 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /**
- * Created by Andrei Andrade on 05/10/2016.
+ * Created by Andrei Andrade on 20/10/2016.
  */
-@Entity(name = "RECIPE_BOOK")
+@Entity(name = "USER_REACT_RECIPE")
 @XmlRootElement
 @JsonIdentityInfo(generator = JSOGGenerator.class)
-public class RecipeBook implements Serializable {
-
+public class UserReactRecipe implements Serializable {
     @Transient
-    private static final String SEQ = "seq_recipe_book";
-
+    private static final String SEQ = "seq_user_react_recipe";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
     private Long id;
 
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Recipe recipe;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToMany(mappedBy = "recipeBooks", cascade = CascadeType.ALL)
-    private List<Recipe> recipes;
+    private Boolean favority;
 
     public Long getId() {
         return id;
@@ -42,12 +37,12 @@ public class RecipeBook implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Recipe getRecipe() {
+        return recipe;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public User getUser() {
@@ -58,20 +53,12 @@ public class RecipeBook implements Serializable {
         this.user = user;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
+    public Boolean getFavority() {
+        return favority;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
-    public void addRecipe(Recipe recipe) {
-        if (Objects.isNull(this.recipes)) {
-            this.recipes = new ArrayList<>();
-        }
-        this.recipes.add(recipe);
-        recipe.addRecipeBook(this);
+    public void setFavority(Boolean favority) {
+        this.favority = favority;
     }
 
     @Override
@@ -79,21 +66,21 @@ public class RecipeBook implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RecipeBook that = (RecipeBook) o;
+        UserReactRecipe that = (UserReactRecipe) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (recipe != null ? !recipe.equals(that.recipe) : that.recipe != null) return false;
         if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        return recipes != null ? recipes.equals(that.recipes) : that.recipes == null;
+        return favority != null ? favority.equals(that.favority) : that.favority == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (recipe != null ? recipe.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (recipes != null ? recipes.hashCode() : 0);
+        result = 31 * result + (favority != null ? favority.hashCode() : 0);
         return result;
     }
 }

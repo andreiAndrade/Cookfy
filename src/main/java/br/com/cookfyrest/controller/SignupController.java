@@ -5,6 +5,7 @@ import br.com.cookfyrest.dto.AuthenticationDTO;
 import br.com.cookfyrest.dto.SignupDTO;
 import br.com.cookfyrest.model.User;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class SignupController {

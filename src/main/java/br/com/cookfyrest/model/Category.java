@@ -11,16 +11,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Created by Andrei Andrade on 05/10/2016.
+ * Created by Andrei Andrade on 20/10/2016.
  */
-@Entity(name = "RECIPE_BOOK")
+@Entity
 @XmlRootElement
 @JsonIdentityInfo(generator = JSOGGenerator.class)
-public class RecipeBook implements Serializable {
-
+public class Category implements Serializable {
     @Transient
-    private static final String SEQ = "seq_recipe_book";
-
+    private static final String SEQ = "seq_category";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
@@ -28,10 +26,9 @@ public class RecipeBook implements Serializable {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+    private String description;
 
-    @ManyToMany(mappedBy = "recipeBooks", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 
     public Long getId() {
@@ -50,12 +47,12 @@ public class RecipeBook implements Serializable {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public String getDescription() {
+        return description;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Recipe> getRecipes() {
@@ -67,11 +64,13 @@ public class RecipeBook implements Serializable {
     }
 
     public void addRecipe(Recipe recipe) {
-        if (Objects.isNull(this.recipes)) {
-            this.recipes = new ArrayList<>();
+        if (Objects.nonNull(recipe)) {
+            if (Objects.isNull(this.recipes)) {
+                this.recipes = new ArrayList<>();
+            }
+            this.recipes.add(recipe);
+            recipe.addCategory(this);
         }
-        this.recipes.add(recipe);
-        recipe.addRecipeBook(this);
     }
 
     @Override
@@ -79,12 +78,13 @@ public class RecipeBook implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RecipeBook that = (RecipeBook) o;
+        Category category = (Category) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        return recipes != null ? recipes.equals(that.recipes) : that.recipes == null;
+        if (id != null ? !id.equals(category.id) : category.id != null) return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+        if (description != null ? !description.equals(category.description) : category.description != null)
+            return false;
+        return recipes != null ? recipes.equals(category.recipes) : category.recipes == null;
 
     }
 
@@ -92,7 +92,7 @@ public class RecipeBook implements Serializable {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (recipes != null ? recipes.hashCode() : 0);
         return result;
     }
