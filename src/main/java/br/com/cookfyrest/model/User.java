@@ -15,7 +15,7 @@ import java.util.Objects;
 /**
  * Created by Andrei Andrade on 10/09/2016.
  */
-@Entity
+@Entity(name = "user_tab")
 @JsonIdentityInfo(generator = JSOGGenerator.class)
 @XmlRootElement
 public class User implements Serializable {
