@@ -18,7 +18,7 @@ public class RecipeStep implements Serializable {
     private static final String SEQ = "seq_recipe_step";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
     @Column(name = "STEP_ORDER")
