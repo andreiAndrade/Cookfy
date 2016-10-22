@@ -1,10 +1,10 @@
-INSERT INTO user (adapter, date_created, date_updated, email, hash, name, username)
+INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
 VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'andrei@gmail.com', 'andrei', 'andrei andrade', 'andrei');
-INSERT INTO user (adapter, date_created, date_updated, email, hash, name, username)
+INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
 VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'thiago@gmail.com', 'thiago', 'thiago mazuhim', 'thiago');
-INSERT INTO user (adapter, date_created, date_updated, email, hash, name, username)
+INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
 VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'bruno@gmail.com', 'bruno', 'bruno fontenele', 'bruno');
-INSERT INTO user (adapter, date_created, date_updated, email, hash, name, username)
+INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
 VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'paula@gmail.com', 'paula', 'paula bol', 'paula');
 
 INSERT INTO ingredient (description, name) VALUES ('teste', 'arroz integral');
