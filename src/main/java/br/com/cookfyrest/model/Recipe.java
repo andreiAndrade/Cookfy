@@ -41,8 +41,8 @@ public class Recipe implements Serializable {
                     @JoinColumn(name = "RECIPEBOOK_ID")})
     private List<RecipeBook> recipeBooks;
 
-//    @OneToMany(mappedBy = "recipe", cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-//    private List<RecipeIngredient> recipeIngredients;
+    @Transient
+    private List<RecipeIngredient> recipeIngredients;
 
     @ManyToMany
     @JoinTable(
@@ -62,11 +62,11 @@ public class Recipe implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private User chef;
 
-//    @OneToMany(mappedBy = "recipe")
-//    private List<UserReactRecipe> userReactRecipes;
-//
-//    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-//    private List<RecipeStep> recipeSteps;
+    @OneToMany(mappedBy = "recipe")
+    private List<UserReactRecipe> userReactRecipes;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<RecipeStep> recipeSteps;
 
     public Long getId() {
         return id;
@@ -115,23 +115,23 @@ public class Recipe implements Serializable {
         this.recipeBooks.add(recipeBook);
     }
 
-//    public List<RecipeIngredient> getRecipeIngredients() {
-//        return recipeIngredients;
-//    }
-//
-//    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
-//        this.recipeIngredients = recipeIngredients;
-//    }
-//
-//    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
-//        if (Objects.nonNull(recipeIngredient)) {
-//            if (Objects.isNull(this.recipeIngredients)) {
-//                this.recipeIngredients = new ArrayList<>();
-//            }
-//            this.recipeIngredients.add(recipeIngredient);
-//            recipeIngredient.setRecipe(this);
-//        }
-//    }
+    public List<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
+    }
+
+    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
+    }
+
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (Objects.nonNull(recipeIngredient)) {
+            if (Objects.isNull(this.recipeIngredients)) {
+                this.recipeIngredients = new ArrayList<>();
+            }
+            this.recipeIngredients.add(recipeIngredient);
+            recipeIngredient.setRecipe(this);
+        }
+    }
 
     public List<Category> getCategories() {
         return categories;
@@ -174,42 +174,41 @@ public class Recipe implements Serializable {
         this.chef = chef;
     }
 
-//    public List<UserReactRecipe> getUserReactRecipes() {
-//        return userReactRecipes;
-//    }
-//
-//    public void setUserReactRecipes(List<UserReactRecipe> userReactRecipes) {
-//        this.userReactRecipes = userReactRecipes;
-//    }
-//
-//    public void addUserReactRecipes(UserReactRecipe userReactRecipe) {
-//        if (Objects.nonNull(userReactRecipe)) {
-//            if (Objects.isNull(this.userReactRecipes)) {
-//                this.userReactRecipes = new ArrayList<>();
-//            }
-//            this.userReactRecipes.add(userReactRecipe);
-//            userReactRecipe.setRecipe(this);
-//        }
-//    }
-//
-//    public List<RecipeStep> getRecipeSteps() {
-//        return recipeSteps;
-//    }
-//
-//    public void setRecipeSteps(List<RecipeStep> recipeSteps) {
-//        this.recipeSteps = recipeSteps;
-//    }
-//
-//    public void addRecipeStep(RecipeStep recipeStep) {
-//        if (Objects.nonNull(recipeStep)) {
-//            if (Objects.isNull(this.recipeSteps)) {
-//                this.recipeSteps = new ArrayList<>();
-//            }
-//            this.recipeSteps.add(recipeStep);
-//            recipeStep.setRecipe(this);
-//        }
-//    }
+    public List<UserReactRecipe> getUserReactRecipes() {
+        return userReactRecipes;
+    }
 
+    public void setUserReactRecipes(List<UserReactRecipe> userReactRecipes) {
+        this.userReactRecipes = userReactRecipes;
+    }
+
+    public void addUserReactRecipes(UserReactRecipe userReactRecipe) {
+        if (Objects.nonNull(userReactRecipe)) {
+            if (Objects.isNull(this.userReactRecipes)) {
+                this.userReactRecipes = new ArrayList<>();
+            }
+            this.userReactRecipes.add(userReactRecipe);
+            userReactRecipe.setRecipe(this);
+        }
+    }
+
+    public List<RecipeStep> getRecipeSteps() {
+        return recipeSteps;
+    }
+
+    public void setRecipeSteps(List<RecipeStep> recipeSteps) {
+        this.recipeSteps = recipeSteps;
+    }
+
+    public void addRecipeStep(RecipeStep recipeStep) {
+        if (Objects.nonNull(recipeStep)) {
+            if (Objects.isNull(this.recipeSteps)) {
+                this.recipeSteps = new ArrayList<>();
+            }
+            this.recipeSteps.add(recipeStep);
+            recipeStep.setRecipe(this);
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -223,10 +222,15 @@ public class Recipe implements Serializable {
         if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
         if (difficulty != null ? !difficulty.equals(recipe.difficulty) : recipe.difficulty != null) return false;
         if (recipeBooks != null ? !recipeBooks.equals(recipe.recipeBooks) : recipe.recipeBooks != null) return false;
+        if (recipeIngredients != null ? !recipeIngredients.equals(recipe.recipeIngredients) : recipe.recipeIngredients != null)
+            return false;
         if (categories != null ? !categories.equals(recipe.categories) : recipe.categories != null) return false;
         if (prepTime != null ? !prepTime.equals(recipe.prepTime) : recipe.prepTime != null) return false;
         if (cookTime != null ? !cookTime.equals(recipe.cookTime) : recipe.cookTime != null) return false;
-        return chef != null ? chef.equals(recipe.chef) : recipe.chef == null;
+        if (chef != null ? !chef.equals(recipe.chef) : recipe.chef != null) return false;
+        if (userReactRecipes != null ? !userReactRecipes.equals(recipe.userReactRecipes) : recipe.userReactRecipes != null)
+            return false;
+        return recipeSteps != null ? recipeSteps.equals(recipe.recipeSteps) : recipe.recipeSteps == null;
 
     }
 
@@ -237,10 +241,13 @@ public class Recipe implements Serializable {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (difficulty != null ? difficulty.hashCode() : 0);
         result = 31 * result + (recipeBooks != null ? recipeBooks.hashCode() : 0);
+        result = 31 * result + (recipeIngredients != null ? recipeIngredients.hashCode() : 0);
         result = 31 * result + (categories != null ? categories.hashCode() : 0);
         result = 31 * result + (prepTime != null ? prepTime.hashCode() : 0);
         result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
         result = 31 * result + (chef != null ? chef.hashCode() : 0);
+        result = 31 * result + (userReactRecipes != null ? userReactRecipes.hashCode() : 0);
+        result = 31 * result + (recipeSteps != null ? recipeSteps.hashCode() : 0);
         return result;
     }
 }

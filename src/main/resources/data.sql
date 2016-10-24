@@ -1,11 +1,21 @@
-INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
-VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'andrei@gmail.com', 'andrei', 'andrei andrade', 'andrei');
-INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
-VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'thiago@gmail.com', 'thiago', 'thiago mazuhim', 'thiago');
-INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
-VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'bruno@gmail.com', 'bruno', 'bruno fontenele', 'bruno');
-INSERT INTO user_tab (adapter, date_created, date_updated, email, hash, name, username)
-VALUES ('application', '2015-09-09 21:46:44', '2015-09-09 21:46:44', 'paula@gmail.com', 'paula', 'paula bol', 'paula');
+INSERT INTO user_tab (date_created, date_updated, email, name, username)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'andrei@gmail.com', 'andrei andrade', 'andrei');
+INSERT INTO user_tab (date_created, date_updated, email, name, username)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'paula@gmail.com', 'paula bol', 'paula');
+INSERT INTO user_tab (date_created, date_updated, email, name, username)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'bruno@gmail.com', 'bruno fontenelle', 'bruno');
+INSERT INTO user_tab (date_created, date_updated, email, name, username)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'thiago@gmail.com', 'thiago mazuhim', 'thiago');
+
+INSERT INTO user_identity (user_id, hash, adapter, date_created, date_updated)
+VALUES (1, 'andrei', 'application', '2015-09-09 21:46:44', '2015-09-09 21:46:44');
+INSERT INTO user_identity (user_id, hash, adapter, date_created, date_updated)
+VALUES (2, 'paula', 'application', '2015-09-09 21:46:44', '2015-09-09 21:46:44');
+INSERT INTO user_identity (user_id, hash, adapter, date_created, date_updated)
+VALUES (3, 'bruno', 'application', '2015-09-09 21:46:44', '2015-09-09 21:46:44');
+INSERT INTO user_identity (user_id, hash, adapter, date_created, date_updated)
+VALUES (4, 'thiago', 'application', '2015-09-09 21:46:44', '2015-09-09 21:46:44');
+
 
 INSERT INTO ingredient (description, name) VALUES ('teste', 'arroz integral');
 INSERT INTO ingredient (description, name) VALUES ('teste', 'feijão carioca');

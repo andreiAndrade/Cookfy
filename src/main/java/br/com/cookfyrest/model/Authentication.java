@@ -21,7 +21,7 @@ public class Authentication implements Serializable{
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+    private Identity identity;
 
     private String token;
 
@@ -37,8 +37,8 @@ public class Authentication implements Serializable{
 
     public Authentication() {}
 
-    public Authentication(User user, String token) {
-        this.user = user;
+    public Authentication(Identity identity, String token) {
+        this.identity = identity;
         this.token = token;
         this.status = true;
         this.dateCreated = new Date();
@@ -53,12 +53,12 @@ public class Authentication implements Serializable{
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Identity getIdentity() {
+        return identity;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setIdentity(Identity identity) {
+        this.identity = identity;
     }
 
     public String getToken() {
@@ -101,7 +101,7 @@ public class Authentication implements Serializable{
         Authentication that = (Authentication) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (user != null ? !user.equals(that.user) : that.user != null) return false;
+        if (identity != null ? !identity.equals(that.identity) : that.identity != null) return false;
         if (token != null ? !token.equals(that.token) : that.token != null) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null) return false;
         if (dateUpdated != null ? !dateUpdated.equals(that.dateUpdated) : that.dateUpdated != null) return false;
@@ -112,7 +112,7 @@ public class Authentication implements Serializable{
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+        result = 31 * result + (identity != null ? identity.hashCode() : 0);
         result = 31 * result + (token != null ? token.hashCode() : 0);
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
         result = 31 * result + (dateUpdated != null ? dateUpdated.hashCode() : 0);

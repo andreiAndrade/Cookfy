@@ -1,16 +1,14 @@
 package br.com.cookfyrest.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+
 
 /**
  * Created by Andrei Andrade on 10/09/2016.
@@ -36,8 +34,12 @@ public class User implements Serializable {
     @Column(unique = true)
     private String email;
 
+    @Transient
+    @JsonIgnore
     private String hash;
 
+    @Transient
+    @JsonIgnore
     private String adapter;
 
     @Column(name = "DATE_CREATED")
@@ -48,11 +50,11 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<RecipeBook> myRecipeBooks;
-
-    @OneToMany(mappedBy = "chef", cascade = CascadeType.ALL)
-    private List<Recipe> myRecipes;
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<RecipeBook> myRecipeBooks;
+//
+//    @OneToMany(mappedBy = "chef", cascade = CascadeType.ALL)
+//    private List<Recipe> myRecipes;
 
     public User() {
     }
@@ -129,29 +131,30 @@ public class User implements Serializable {
         this.adapter = adapter;
     }
 
-    public List<RecipeBook> getMyRecipeBooks() {
-        return myRecipeBooks;
-    }
+//    public List<RecipeBook> getMyRecipeBooks() {
+//        return myRecipeBooks;
+//    }
+//
+//    public void setMyRecipeBooks(List<RecipeBook> myRecipeBooks) {
+//        this.myRecipeBooks = myRecipeBooks;
+//    }
+//
+//    public void addRecipeBook(RecipeBook recipeBook) {
+//        if (Objects.isNull(this.myRecipeBooks)) {
+//            this.myRecipeBooks = new ArrayList<>();
+//        }
+//        this.myRecipeBooks.add(recipeBook);
+//        recipeBook.setUser(this);
+//    }
 
-    public void setMyRecipeBooks(List<RecipeBook> myRecipeBooks) {
-        this.myRecipeBooks = myRecipeBooks;
-    }
+//    public List<Recipe> getMyRecipes() {
+//        return myRecipes;
+//    }
+//
+//    public void setMyRecipes(List<Recipe> myRecipes) {
+//        this.myRecipes = myRecipes;
+//    }
 
-    public void addRecipeBook(RecipeBook recipeBook) {
-        if (Objects.isNull(this.myRecipeBooks)) {
-            this.myRecipeBooks = new ArrayList<>();
-        }
-        this.myRecipeBooks.add(recipeBook);
-        recipeBook.setUser(this);
-    }
-
-    public List<Recipe> getMyRecipes() {
-        return myRecipes;
-    }
-
-    public void setMyRecipes(List<Recipe> myRecipes) {
-        this.myRecipes = myRecipes;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -167,10 +170,7 @@ public class User implements Serializable {
         if (hash != null ? !hash.equals(user.hash) : user.hash != null) return false;
         if (adapter != null ? !adapter.equals(user.adapter) : user.adapter != null) return false;
         if (dateCreated != null ? !dateCreated.equals(user.dateCreated) : user.dateCreated != null) return false;
-        if (dateUpdated != null ? !dateUpdated.equals(user.dateUpdated) : user.dateUpdated != null) return false;
-        if (myRecipeBooks != null ? !myRecipeBooks.equals(user.myRecipeBooks) : user.myRecipeBooks != null)
-            return false;
-        return myRecipes != null ? myRecipes.equals(user.myRecipes) : user.myRecipes == null;
+        return dateUpdated != null ? dateUpdated.equals(user.dateUpdated) : user.dateUpdated == null;
 
     }
 
@@ -184,8 +184,6 @@ public class User implements Serializable {
         result = 31 * result + (adapter != null ? adapter.hashCode() : 0);
         result = 31 * result + (dateCreated != null ? dateCreated.hashCode() : 0);
         result = 31 * result + (dateUpdated != null ? dateUpdated.hashCode() : 0);
-        result = 31 * result + (myRecipeBooks != null ? myRecipeBooks.hashCode() : 0);
-        result = 31 * result + (myRecipes != null ? myRecipes.hashCode() : 0);
         return result;
     }
 }
