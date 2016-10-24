@@ -47,6 +47,7 @@ public class RecipeBookResource {
 		
 		
 		return listaLivros;
+		//return repository.findByUserId(user_id);
 	}
 	
 	@RequestMapping(value = "{bookId}",
