@@ -17,7 +17,7 @@ public class Authentication implements Serializable{
     private static final String SEQ = "seq_authentication";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)

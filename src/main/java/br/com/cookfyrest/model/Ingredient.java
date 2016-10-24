@@ -23,7 +23,7 @@ public class Ingredient implements Serializable {
 
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
     private String name;

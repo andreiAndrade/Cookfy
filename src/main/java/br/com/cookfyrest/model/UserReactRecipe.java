@@ -18,7 +18,7 @@ public class UserReactRecipe implements Serializable {
     private static final String SEQ = "seq_user_react_recipe";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = SEQ)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
