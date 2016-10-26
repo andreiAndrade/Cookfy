@@ -48,5 +48,99 @@
     	"ingredientes" : "",<br>
     	"myRecipeBooks" : [],<br>
     }<br>
+    
+    http://cookfy.herokuapp.com/recipeBook?userId=value<br>
+    <br>
+	method: GET<br>
+    request:<br>
+    success response:<br>
+	[<br>
+  		{
+    		"id": ,<br>
+    		"name": <br>
+    		"user":<br>
+    		"recipes": [<br>
+      			{}<br>
+  		}<br>
+	]<br>
+
+	http://cookfy.herokuapp.com/recipeBook/{bookId}<br>
+    <br>
+	method: GET<br>
+    request:<br>
+    {<br>
+    	bookId="Id do livro de receitas"
+    }<br>	
+    success response:<br>
+	{<br>
+    	"id": ,<br>
+    	"name": <br>
+    	"user":<br>
+    	"recipes": [<br>
+      		{}<br>
+  	}<br>
+
+	http://cookfy.herokuapp.com/recipeBook/<br>
+    <br>
+	method: POST<br>
+    request:<br>
+	{<br>
+    	"name": ,<br>
+    	"user_id": <br>
+	}<br>
+	success response:<br>
+	{<br>
+    	"id": ,<br>
+    	"name": <br>
+    	"user":<br>
+    	"recipes": [<br>
+      		{}<br>
+  	}<br>
+
+	http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
+    <br>
+	method: POST<br>
+	request:<br>
+	{<br>
+    	bookId="Id do livro de receitas"
+    	recipeId="Id da receita"
+    }<br>
+	success response:<br>
+	{<br>
+    	"id": ,<br>
+    	"name": <br>
+    	"user":<br>
+    	"recipes": [<br>
+      		{}<br>
+  	}<br>
+
+	http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
+    <br>
+	method: DELETE<br>
+	request:<br>
+	{<br>
+    	bookId="Id do livro de receitas"
+    	recipeId="Id da receita"
+    }<br>
+	success response:<br>
+	{<br>
+    	"id": ,<br>
+    	"name": <br>
+    	"user":<br>
+    	"recipes": [<br>
+      	{}<br>
+  	}<br>
+
+	http://cookfy.herokuapp.com/recipeBook/{bookId} <br>
+    <br>
+	method: DELETE<br>
+	request:<br>
+	{<br>
+    	bookId="Id do livro de receitas"
+    }<br>
+	success response:<br>
+	{<br>
+   		status: 200 ok<br>
+	}<br>
 </body>
 </html>
