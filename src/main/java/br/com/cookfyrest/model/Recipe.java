@@ -114,6 +114,10 @@ public class Recipe implements Serializable {
         }
         this.recipeBooks.add(recipeBook);
     }
+    
+    public void deleteRecipeBook(RecipeBook recipeBook) {
+		this.recipeBooks.remove(recipeBook);
+	}
 
     public List<RecipeIngredient> getRecipeIngredients() {
         return recipeIngredients;
@@ -209,6 +213,7 @@ public class Recipe implements Serializable {
             recipeStep.setRecipe(this);
         }
     }
+    
 
     @Override
     public boolean equals(Object o) {

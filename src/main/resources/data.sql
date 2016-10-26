@@ -60,3 +60,7 @@ INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('4', 4, 1);
 INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('1', 6, 1);
+
+
+insert INTO recipe_book (name, user_id)
+VALUES ('Cafe da manha', '3');

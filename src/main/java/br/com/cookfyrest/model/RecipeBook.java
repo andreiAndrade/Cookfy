@@ -65,6 +65,11 @@ public class RecipeBook implements Serializable {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+    
+    public RecipeBook(String name, User user){
+    	this.name = name;
+    	this.user = user;
+    }
 
     public void addRecipe(Recipe recipe) {
         if (Objects.isNull(this.recipes)) {
@@ -73,6 +78,11 @@ public class RecipeBook implements Serializable {
         this.recipes.add(recipe);
         recipe.addRecipeBook(this);
     }
+    
+    public void deleteRecipe(Recipe recipe) {
+		this.recipes.remove(recipe);
+		recipe.deleteRecipeBook(this);
+	}
 
     @Override
     public boolean equals(Object o) {
