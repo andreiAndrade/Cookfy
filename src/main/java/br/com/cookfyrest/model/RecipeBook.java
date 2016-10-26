@@ -70,6 +70,8 @@ public class RecipeBook implements Serializable {
     	this.name = name;
     	this.user = user;
     }
+    
+    public RecipeBook(){}
 
     public void addRecipe(Recipe recipe) {
         if (Objects.isNull(this.recipes)) {
