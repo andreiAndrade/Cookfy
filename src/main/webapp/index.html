@@ -1,146 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cookfy</title>
+    <title>Cookfy</title>
 </head>
 <body>
-	https://cookfy-andreiandrade.c9users.io/cookfy/login?user=value&hash=value<br>
-    <br>
-    method: GET<br>
-    request:<br>
-    {<br>
-    	"user" : "username ou email",<br>
-    	"hash" : "senha criptografada",<br>
-    	"adapter" : "application"<br>
-    }<br>
-    success response:<br>
-    {<br>
-    	"id" : id_user,<br>
-    	"token" : "token"<br>
-    }<br>
-    <br>
-    https://cookfy-andreiandrade.c9users.io/cookfy/signup<br>
-    method: POST<br>
-    request:<br>
-    {<br>
-		"name" : "name",<br>
-		"username" : "andrei",<br>
-		"email" : "andrei",<br>
-		"hash" : "hash",<br>
-		"adapter" : "application"<br>
-	}<br>
-    success response:<br>
-    {<br>
-    	"id" : id_user,<br>
-    	"token" : "token"<br>
-    }<br>
-    <br>
-    https://cookfy-andreiandrade.c9users.io/cookfy/recipes/{recId}<br>
-    method: GET<br>
-    request:<br>
-    success response:<br>
-    {<br>
-    	"id" : id_user,<br>
-    	"name" : "",
-    	"description" : "",<br>
-    	"executionTime" : "",<br>
-    	"difficulty" : "",<br>
-    	"ingredientes" : "",<br>
-    	"myRecipeBooks" : [],<br>
-    }<br>
-    
-    http://cookfy.herokuapp.com/recipeBook?userId=value<br>
-    <br>
-	method: GET<br>
-    request:<br>
-    success response:<br>
-	[<br>
-  		{
-    		"id": ,<br>
-    		"name": <br>
-    		"user":<br>
-    		"recipes": [<br>
-      			{}<br>
-  		}<br>
-	]<br>
+http://cookfy.herokuapp.com/login?username=value&email=value&hash=value<br>
+<br>
+method: GET<br>
+success response:<br>
+{<br>
+"id" : id_user,<br>
+"token" : "token"<br>
+}<br>
+<br>
+http://cookfy.herokuapp.com/signup<br>
+method: POST<br>
+request:<br>
+{<br>
+"name" : "name",<br>
+"username" : "andrei",<br>
+"email" : "andrei",<br>
+"hash" : "hash",<br>
+"adapter" : "application"<br>
+"dateCreated" : "data"<br>
+"dateUpdated" : "data"<br>
+}<br>
+http://cookfy.herokuapp.com/recipes<br>
+method: GET<br>
+request:<br>
+success response:<br>
+{<br>
+receitas
+}<br>
+http://cookfy.herokuapp.com/recipes/{recId}<br>
+method: GET<br>
+request:<br>
+success response:<br>
+{<br>
+"id": 1,<br>
+"name": "Ala minuta",<br>
+"description": "teste",<br>
+"difficulty": "HARD",<br>
+"recipeBooks": [],<br>
+"recipeIngredients": [],<br>
+"categories": [],<br>
+"prepTime": "00:30:00",<br>
+"cookTime": "01:00:00",<br>
+"chef": {},<br>
+"userReactRecipes": [],<br>
+"recipeSteps": []<br>
+}<br>
+<br>
+http://cookfy.herokuapp.com/recipeBook?userId=value<br>
+<br>
+method: GET<br>
+request:<br>
+success response:<br>
+[<br>
+{
+"id": ,<br>
+"name": <br>
+"user":<br>
+"recipes": [<br>
+{}<br>
+}<br>
+]<br>
 
-	http://cookfy.herokuapp.com/recipeBook/{bookId}<br>
-    <br>
-	method: GET<br>
-    request:<br>
-    {<br>
-    	bookId="Id do livro de receitas"
-    }<br>	
-    success response:<br>
-	{<br>
-    	"id": ,<br>
-    	"name": <br>
-    	"user":<br>
-    	"recipes": [<br>
-      		{}<br>
-  	}<br>
+http://cookfy.herokuapp.com/recipeBook/{bookId}<br>
+<br>
+method: GET<br>
+request:<br>
+{<br>
+bookId="Id do livro de receitas"
+}<br>
+success response:<br>
+{<br>
+"id": ,<br>
+"name": <br>
+"user":<br>
+"recipes": [<br>
+{}<br>
+}<br>
 
-	http://cookfy.herokuapp.com/recipeBook/<br>
-    <br>
-	method: POST<br>
-    request:<br>
-	{<br>
-    	"name": ,<br>
-    	"user_id": <br>
-	}<br>
-	success response:<br>
-	{<br>
-    	"id": ,<br>
-    	"name": <br>
-    	"user":<br>
-    	"recipes": [<br>
-      		{}<br>
-  	}<br>
+http://cookfy.herokuapp.com/recipeBook/<br>
+<br>
+method: POST<br>
+request:<br>
+{<br>
+"name": ,<br>
+"user_id": <br>
+}<br>
+success response:<br>
+{<br>
+"id": ,<br>
+"name": <br>
+"user":<br>
+"recipes": [<br>
+{}<br>
+}<br>
 
-	http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
-    <br>
-	method: POST<br>
-	request:<br>
-	{<br>
-    	bookId="Id do livro de receitas"
-    	recipeId="Id da receita"
-    }<br>
-	success response:<br>
-	{<br>
-    	"id": ,<br>
-    	"name": <br>
-    	"user":<br>
-    	"recipes": [<br>
-      		{}<br>
-  	}<br>
+http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
+<br>
+method: POST<br>
+request:<br>
+{<br>
+bookId="Id do livro de receitas"
+recipeId="Id da receita"
+}<br>
+success response:<br>
+{<br>
+"id": ,<br>
+"name": <br>
+"user":<br>
+"recipes": [<br>
+{}<br>
+}<br>
 
-	http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
-    <br>
-	method: DELETE<br>
-	request:<br>
-	{<br>
-    	bookId="Id do livro de receitas"
-    	recipeId="Id da receita"
-    }<br>
-	success response:<br>
-	{<br>
-    	"id": ,<br>
-    	"name": <br>
-    	"user":<br>
-    	"recipes": [<br>
-      	{}<br>
-  	}<br>
+http://cookfy.herokuapp.com/recipeBook/{bookId}/recipes/{recipeId} <br>
+<br>
+method: DELETE<br>
+request:<br>
+{<br>
+bookId="Id do livro de receitas"
+recipeId="Id da receita"
+}<br>
+success response:<br>
+{<br>
+"id": ,<br>
+"name": <br>
+"user":<br>
+"recipes": [<br>
+{}<br>
+}<br>
 
-	http://cookfy.herokuapp.com/recipeBook/{bookId} <br>
-    <br>
-	method: DELETE<br>
-	request:<br>
-	{<br>
-    	bookId="Id do livro de receitas"
-    }<br>
-	success response:<br>
-	{<br>
-   		status: 200 ok<br>
-	}<br>
+http://cookfy.herokuapp.com/recipeBook/{bookId} <br>
+<br>
+method: DELETE<br>
+request:<br>
+{<br>
+bookId="Id do livro de receitas"
+}<br>
+success response:<br>
+{<br>
+status: 200 ok<br>
+}<br>
 </body>
 </html>
