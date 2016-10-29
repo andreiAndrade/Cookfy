@@ -64,3 +64,39 @@ VALUES ('1', 6, 1);
 
 insert INTO recipe_book (name, user_id)
 VALUES ('Cafe da manha', '3');
+
+insert INTO category (name, description)
+VALUES ('Comida Mexicana', 'Coma assistindo RBD');
+insert INTO category (name, description)
+VALUES('Comida italiana','Mamamia! Toda a cultura italiana no seu prato. Massas, molhos e morangos');
+insert INTO category (name, description)
+VALUES('Comida caseira','Comida com gostinho de casa.');
+insert INTO category (name, description)
+VALUES('Comida tailandesa','DESCRICAO DA COMIDA TAILANDESA');
+insert INTO category (name, description)
+VALUES('Cafe da manha','Tudo para comecar o dia com energia');
+
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(1, 1);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(1, 2);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(1, 3);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(1, 4);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 3);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 4);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 5);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 6);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 6);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 5);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 4);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 1);
