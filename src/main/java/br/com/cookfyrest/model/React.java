@@ -1,21 +1,23 @@
 package br.com.cookfyrest.model;
 
+import br.com.cookfyrest.model.domain.ReactDomain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by Andrei Andrade on 20/10/2016.
  */
-@Entity(name = "USER_REACT_RECIPE")
+@Entity(name = "REACT")
 @XmlRootElement
 @JsonIdentityInfo(generator = JSOGGenerator.class)
-public class UserReactRecipe implements Serializable {
+public class React implements Serializable {
     @Transient
-    private static final String SEQ = "seq_user_react_recipe";
+    private static final String SEQ = "seq_react";
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
@@ -24,10 +26,17 @@ public class UserReactRecipe implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Recipe recipe;
 
+    @Transient
+    private Long recipeId;
+
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    private Boolean favority;
+    @Transient
+    private Long userId;
+
+    @Enumerated(EnumType.STRING)
+    private ReactDomain react;
 
     public Long getId() {
         return id;
@@ -43,6 +52,9 @@ public class UserReactRecipe implements Serializable {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+
+        if (Objects.nonNull(this.recipe))
+            this.recipeId = this.recipe.getId();
     }
 
     public User getUser() {
@@ -51,14 +63,33 @@ public class UserReactRecipe implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+
+        if (Objects.nonNull(this.user))
+            this.userId = this.user.getId();
     }
 
-    public Boolean getFavority() {
-        return favority;
+    public ReactDomain getReact() {
+        return react;
     }
 
-    public void setFavority(Boolean favority) {
-        this.favority = favority;
+    public void setReact(ReactDomain react) {
+        this.react = react;
+    }
+
+    public Long getRecipeId() {
+        return recipeId;
+    }
+
+    public void setRecipeId(Long recipeId) {
+        this.recipeId = recipeId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -66,12 +97,12 @@ public class UserReactRecipe implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserReactRecipe that = (UserReactRecipe) o;
+        React that = (React) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (recipe != null ? !recipe.equals(that.recipe) : that.recipe != null) return false;
         if (user != null ? !user.equals(that.user) : that.user != null) return false;
-        return favority != null ? favority.equals(that.favority) : that.favority == null;
+        return react == that.react;
 
     }
 
@@ -80,7 +111,7 @@ public class UserReactRecipe implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (recipe != null ? recipe.hashCode() : 0);
         result = 31 * result + (user != null ? user.hashCode() : 0);
-        result = 31 * result + (favority != null ? favority.hashCode() : 0);
+        result = 31 * result + (react != null ? react.hashCode() : 0);
         return result;
     }
 }

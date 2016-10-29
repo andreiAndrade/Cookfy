@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -35,11 +36,9 @@ public class User implements Serializable {
     private String email;
 
     @Transient
-    @JsonIgnore
     private String hash;
 
     @Transient
-    @JsonIgnore
     private String adapter;
 
     @Column(name = "DATE_CREATED")
@@ -49,6 +48,9 @@ public class User implements Serializable {
     @Column(name = "DATE_UPDATED")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
+
+    @OneToMany(mappedBy = "user")
+    private List<React> myReacts;
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<RecipeBook> myRecipeBooks;
@@ -131,7 +133,15 @@ public class User implements Serializable {
         this.adapter = adapter;
     }
 
-//    public List<RecipeBook> getMyRecipeBooks() {
+    public List<React> getMyReacts() {
+        return myReacts;
+    }
+
+    public void setMyReacts(List<React> myReacts) {
+        this.myReacts = myReacts;
+    }
+
+    //    public List<RecipeBook> getMyRecipeBooks() {
 //        return myRecipeBooks;
 //    }
 //

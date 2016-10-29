@@ -50,10 +50,10 @@ public class LoginResource {
         if (Objects.nonNull(identity) && identity.getHash().equals(hash)) {
 
             String token = UUID.randomUUID().toString().replace("-", "") + new Date().getTime();
-            Authentication auth = new Authentication(identity, token);
+            Authentication auth = new Authentication(user, token);
             authenticationRepo.save(auth);
 
-            return new AuthenticationDTO(auth.getToken(), auth.getIdentity().getId());
+            return new AuthenticationDTO(auth.getToken(), auth.getUser().getId());
         }
 
         return null;

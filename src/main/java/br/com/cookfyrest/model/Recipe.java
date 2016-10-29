@@ -6,7 +6,6 @@ import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +62,7 @@ public class Recipe implements Serializable {
     private User chef;
 
     @OneToMany(mappedBy = "recipe")
-    private List<UserReactRecipe> userReactRecipes;
+    private List<React> reacts;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<RecipeStep> recipeSteps;
@@ -178,21 +177,21 @@ public class Recipe implements Serializable {
         this.chef = chef;
     }
 
-    public List<UserReactRecipe> getUserReactRecipes() {
-        return userReactRecipes;
+    public List<React> getReacts() {
+        return reacts;
     }
 
-    public void setUserReactRecipes(List<UserReactRecipe> userReactRecipes) {
-        this.userReactRecipes = userReactRecipes;
+    public void setReacts(List<React> reacts) {
+        this.reacts = reacts;
     }
 
-    public void addUserReactRecipes(UserReactRecipe userReactRecipe) {
-        if (Objects.nonNull(userReactRecipe)) {
-            if (Objects.isNull(this.userReactRecipes)) {
-                this.userReactRecipes = new ArrayList<>();
+    public void addUserReactRecipes(React react) {
+        if (Objects.nonNull(react)) {
+            if (Objects.isNull(this.reacts)) {
+                this.reacts = new ArrayList<>();
             }
-            this.userReactRecipes.add(userReactRecipe);
-            userReactRecipe.setRecipe(this);
+            this.reacts.add(react);
+            react.setRecipe(this);
         }
     }
 
@@ -233,7 +232,7 @@ public class Recipe implements Serializable {
         if (prepTime != null ? !prepTime.equals(recipe.prepTime) : recipe.prepTime != null) return false;
         if (cookTime != null ? !cookTime.equals(recipe.cookTime) : recipe.cookTime != null) return false;
         if (chef != null ? !chef.equals(recipe.chef) : recipe.chef != null) return false;
-        if (userReactRecipes != null ? !userReactRecipes.equals(recipe.userReactRecipes) : recipe.userReactRecipes != null)
+        if (reacts != null ? !reacts.equals(recipe.reacts) : recipe.reacts != null)
             return false;
         return recipeSteps != null ? recipeSteps.equals(recipe.recipeSteps) : recipe.recipeSteps == null;
 
@@ -251,7 +250,7 @@ public class Recipe implements Serializable {
         result = 31 * result + (prepTime != null ? prepTime.hashCode() : 0);
         result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
         result = 31 * result + (chef != null ? chef.hashCode() : 0);
-        result = 31 * result + (userReactRecipes != null ? userReactRecipes.hashCode() : 0);
+        result = 31 * result + (reacts != null ? reacts.hashCode() : 0);
         result = 31 * result + (recipeSteps != null ? recipeSteps.hashCode() : 0);
         return result;
     }
