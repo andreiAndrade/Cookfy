@@ -146,35 +146,49 @@ status: 200 ok<br>
 }<br>
 
 http://cookfy.herokuapp.com/categories<br>
-    <br>
-    method: GET<br>
-    request:<br>
-    success response:<br>
-    [<br>
-  	{<br>
-    		"id": ,<br>
-    		"name": “”,<br>
-    		"description": "",<br>
-    		"recipes": [<br>
-			]<br>
-	}<br>
+<br>
+method: GET<br>
+request:<br>
+success response:<br>
+[<br>
+{<br>
+"id": ,<br>
+"name": “”,<br>
+"description": "",<br>
+"recipes": [<br>
+]<br>
+}<br>
 ]<br>
 
 http://cookfy.herokuapp.com/categories/{categoryId}<br>
-    <br>
-    method: GET<br>
-    request:<br>
-	{<br>
-    		categoryId= ID da categoria<br>
-    	}<br>	
-    success response:<br>
-  	{<br>
-    		"id": ,<br>
-    		"name": “”,<br>
-    		"description": "",<br>
-    		"recipes": [<br>
-		]<br>
-	}<br>
+<br>
+method: GET<br>
+request:<br>
+{<br>
+categoryId= ID da categoria<br>
+}<br>
+success response:<br>
+{<br>
+"id": ,<br>
+"name": “”,<br>
+"description": "",<br>
+"recipes": [<br>
+]<br>
+}<br>
 
+http://cookfy.herokuapp.com/reacts<br>
+<br>
+method: POST<br>
+request:<br>
+{<br>
+"userId" : id<br>
+"recipeId" : id<br>
+"react" : "FAVORITY"<br>
+}<br>
+<br>
+http://cookfy.herokuapp.com/users/reacts?id=id&react=FAVORITY<br>
+<br>
+method: GET<br>
+<br>
 </body>
 </html>
