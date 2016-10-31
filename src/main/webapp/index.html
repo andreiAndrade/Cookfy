@@ -176,6 +176,63 @@ success response:<br>
 ]<br>
 }<br>
 
+https://cookfy.herokuapp.com/recipes<br>
+<br>
+method: POST<br>
+request:<br>
+{<br>
+"recipe_name": String,<br>
+"chef_id": Integer,<br>
+"difficulty": "String",<br>
+"prepTime": Integer(em segundos),<br>
+"cookTime": Integer(em segundos),<br>
+"category_id": Integer,<br>
+"recipeStep": [<br>
+{<br>
+"stepOrder": Integer,<br>
+"description": String<br>
+}<br>
+],<br>
+"ingredients": [<br>
+{<br>
+"ingredient": String,<br>
+"measure": String<br>
+}<br>
+]<br>
+}<br>
+success response:<br>
+{<br>
+"id": Integer,<br>
+name": String,<br>
+"description": String,<br>
+"difficulty": String,<br>
+"recipeBooks": [],<br>
+"recipeIngredients": [],<br>
+"categories": [],<br>
+"prepTime": 60,<br>
+"cookTime": 30,<br>
+"chef": {},<br>
+"reacts": null,<br>
+"recipeSteps": []<br>
+}
+
+https://cookfy.herokuapp.com/recipes/myRecipes?chefId=value
+method: GET
+success response:<br>
+{<br>
+"id": Integer,<br>
+"name": String,<br>
+"description": String,<br>
+"difficulty": String,<br>
+"recipeBooks": [],<br>
+"recipeIngredients": [],<br>
+"categories": [],<br>
+"prepTime": 60,<br>
+"cookTime": 30,<br>
+"chef": {},<br>
+"reacts": null,<br>
+"recipeSteps": []<br>
+}
 http://cookfy.herokuapp.com/reacts<br>
 <br>
 method: POST<br>
