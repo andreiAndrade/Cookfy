@@ -29,7 +29,13 @@ public class RecipeStep implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private Recipe recipe;
 
-    public Long getId() {
+    public RecipeStep(){}
+    
+    public RecipeStep(String description, Integer stepOrder) {
+		this.description = description;
+		this.stepOrder = stepOrder;
+	}
+	public Long getId() {
         return id;
     }
 

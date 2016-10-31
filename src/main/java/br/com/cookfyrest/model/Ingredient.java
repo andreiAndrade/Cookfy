@@ -33,6 +33,11 @@ public class Ingredient implements Serializable {
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
     private List<RecipeIngredient> recipeIngredients;
 
+    public Ingredient(){};
+    public Ingredient(String name){
+    	this.name = name;
+    }
+    
     public Long getId() {
         return id;
     }

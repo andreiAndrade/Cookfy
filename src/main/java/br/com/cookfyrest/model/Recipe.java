@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -52,11 +51,9 @@ public class Recipe implements Serializable {
                     @JoinColumn(name = "CATEGORY_ID")})
     private List<Category> categories;
 
-    @Temporal(TemporalType.TIME)
-    private Date prepTime;
+    private Integer prepTime;
 
-    @Temporal(TemporalType.TIME)
-    private Date cookTime;
+    private Integer cookTime;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private User chef;
@@ -153,19 +150,19 @@ public class Recipe implements Serializable {
         }
     }
 
-    public Date getPrepTime() {
+    public Integer getPrepTime() {
         return prepTime;
     }
 
-    public void setPrepTime(Date prepTime) {
+    public void setPrepTime(Integer prepTime) {
         this.prepTime = prepTime;
     }
 
-    public Date getCookTime() {
+    public Integer getCookTime() {
         return cookTime;
     }
 
-    public void setCookTime(Date cookTime) {
+    public void setCookTime(Integer cookTime) {
         this.cookTime = cookTime;
     }
 

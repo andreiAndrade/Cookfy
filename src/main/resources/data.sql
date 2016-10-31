@@ -34,21 +34,21 @@ INSERT INTO ingredient (description, name) VALUES ('teste', 'carne de frango');
 INSERT INTO ingredient (description, name) VALUES ('teste', 'água');
 
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'HARD', 'Ala minuta', '0:30', 1);
+VALUES ('60', 'teste', 'HARD', 'Ala minuta', '30', 1);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'MEDIUM', 'Ovo Frito', '0:30', 2);
+VALUES ('60', 'teste', 'MEDIUM', 'Ovo Frito', '30', 2);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'HARD', 'Massa com frango', '0:30', 1);
+VALUES ('60', 'teste', 'HARD', 'Massa com frango', '30', 1);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'MEDIUM', 'Bife a milanesa', '0:30', 2);
+VALUES ('60', 'teste', 'MEDIUM', 'Bife a milanesa', '30', 2);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'EASY', 'Pizza de frango', '0:30', 3);
+VALUES ('60', 'teste', 'EASY', 'Pizza de frango', '30', 3);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'MEDIUM', 'Lasanha', '0:30', 3);
+VALUES ('60', 'teste', 'MEDIUM', 'Lasanha', '30', 3);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'HARD', 'Risoto', '0:30', 4);
+VALUES ('60', 'teste', 'HARD', 'Risoto', '30', 4);
 INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES ('1:00', 'teste', 'EASY', 'Carreteiro', '0:30', 4);
+VALUES ('60', 'teste', 'EASY', 'Carreteiro', '30', 4);
 
 INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('1/2 xícara', 1, 1);

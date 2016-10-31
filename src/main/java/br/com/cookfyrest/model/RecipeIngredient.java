@@ -29,7 +29,14 @@ public class RecipeIngredient implements Serializable{
 
     private String measure;
 
-    public Long getId() {
+    public RecipeIngredient(Ingredient ingredient, String measure, Recipe recipe) {
+		this.ingredient = ingredient;
+		this.measure = measure;
+		this.recipe = recipe;
+	}
+    public RecipeIngredient(){}
+
+	public Long getId() {
         return id;
     }
 
