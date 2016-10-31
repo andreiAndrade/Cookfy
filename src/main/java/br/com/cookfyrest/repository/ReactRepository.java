@@ -15,6 +15,6 @@ public interface ReactRepository extends PagingAndSortingRepository<React, Long>
 
     List<React> findByUser(User user);
 
-    List<React> findByReact(ReactDomain react);
+    List<React> findByReactAndUser(ReactDomain react, User users);
 
 }
