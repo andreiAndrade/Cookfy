@@ -20,9 +20,9 @@ import java.util.List;
 @RequestMapping(value = "/reacts")
 public class ReactResource {
 
-    ReactRepository reactRepo;
-    UserRepository userRepo;
-    RecipeRepository recipeRepo;
+    private ReactRepository reactRepo;
+    private UserRepository userRepo;
+    private RecipeRepository recipeRepo;
 
     @Autowired
     ReactResource(ReactRepository reactRepo, UserRepository userRepo, RecipeRepository recipeRepo) {
@@ -37,11 +37,5 @@ public class ReactResource {
         react.setUser(userRepo.findOne(react.getUserId()));
 
         reactRepo.save(react);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<React> getReacts(@RequestParam(name = "id") Long id) {
-        User user = userRepo.findOne(id);
-        return reactRepo.findByUser(user);
     }
 }

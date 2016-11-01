@@ -27,16 +27,12 @@ import java.util.UUID;
 @RequestMapping(value = "/login")
 public class LoginResource {
 
-    private final UserRepository userRepo;
-    private final AuthenticationRepository authenticationRepo;
-    private final IdentityRepository identityRepo;
-
     @Autowired
-    LoginResource(UserRepository userRepo, AuthenticationRepository authenticationRepo, IdentityRepository identityRepo){
-        this.userRepo = userRepo;
-        this.authenticationRepo = authenticationRepo;
-        this.identityRepo = identityRepo;
-    }
+    private UserRepository userRepo;
+    @Autowired
+    private AuthenticationRepository authenticationRepo;
+    @Autowired
+    private IdentityRepository identityRepo;
 
     @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)

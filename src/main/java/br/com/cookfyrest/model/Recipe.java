@@ -1,5 +1,6 @@
 package br.com.cookfyrest.model;
 
+import br.com.cookfyrest.model.domain.DifficultyDomain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
@@ -28,7 +29,7 @@ public class Recipe implements Serializable {
 
     private String description;
 
-    private String difficulty;
+    private DifficultyDomain difficulty;
 
     @ManyToMany
     @JoinTable(
@@ -88,11 +89,11 @@ public class Recipe implements Serializable {
         this.description = description;
     }
 
-    public String getDifficulty() {
+    public DifficultyDomain getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(DifficultyDomain difficulty) {
         this.difficulty = difficulty;
     }
 
@@ -110,10 +111,10 @@ public class Recipe implements Serializable {
         }
         this.recipeBooks.add(recipeBook);
     }
-    
+
     public void deleteRecipeBook(RecipeBook recipeBook) {
-		this.recipeBooks.remove(recipeBook);
-	}
+        this.recipeBooks.remove(recipeBook);
+    }
 
     public List<RecipeIngredient> getRecipeIngredients() {
         return recipeIngredients;
@@ -209,7 +210,7 @@ public class Recipe implements Serializable {
             recipeStep.setRecipe(this);
         }
     }
-    
+
 
     @Override
     public boolean equals(Object o) {

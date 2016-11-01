@@ -1,17 +1,20 @@
 package br.com.cookfyrest.resource;
 
 import br.com.cookfyrest.model.React;
+import br.com.cookfyrest.model.Recipe;
+import br.com.cookfyrest.model.RecipeBook;
+import br.com.cookfyrest.model.User;
 import br.com.cookfyrest.model.domain.ReactDomain;
 import br.com.cookfyrest.repository.ReactRepository;
+import br.com.cookfyrest.repository.RecipeBookRepository;
+import br.com.cookfyrest.repository.RecipeRepository;
 import br.com.cookfyrest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.IllegalFormatException;
@@ -27,15 +30,39 @@ public class UserResource {
 
     private UserRepository userRepo;
     private ReactRepository reactRepo;
+    private RecipeRepository recipeRepo;
+    private RecipeBookRepository recipeBookRepo;
 
     @Autowired
-    UserResource(UserRepository userRepo, ReactRepository reactRepo) {
+    UserResource(UserRepository userRepo, ReactRepository reactRepo, RecipeRepository recipeRepo, RecipeBookRepository recipeBookRepo) {
         this.userRepo = userRepo;
         this.reactRepo = reactRepo;
+        this.recipeRepo = recipeRepo;
+        this.recipeBookRepo = recipeBookRepo;
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/reacts")
-    public ResponseEntity<List<React>> getFavorites(@RequestParam(name = "id") Long id, @RequestParam(name = "react", required = false) String[] reactsType) {
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User findUser(@PathVariable(name = "id") Long id) {
+        return userRepo.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void saveUser(@RequestBody User user) {
+        this.userRepo.save(user);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateUser(@RequestBody User user) {
+        this.userRepo.save(user);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteUser(@RequestBody User user) {
+        this.userRepo.delete(user);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}/reacts")
+    public ResponseEntity<List<React>> listFavorites(@PathVariable(name = "id") Long id, @RequestParam(name = "react", required = false) String[] reactsType) {
         List<React> reacts = new ArrayList<>();
 
         if (reactsType == null || reactsType.length == 0) {
@@ -58,4 +85,25 @@ public class UserResource {
                 new ResponseEntity<>(reacts, HttpStatus.NO_CONTENT) :
                 new ResponseEntity<>(reacts, HttpStatus.OK);
     }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}/recipes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Recipe>> listRecipes(@PathVariable(name = "id") Long id) {
+        User user = this.userRepo.findOne(id);
+        List<Recipe> recipes = this.recipeRepo.findRecipeByChef(user);
+
+        return recipes.isEmpty() ?
+                new ResponseEntity<>(recipes, HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(recipes, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}/recipebooks", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<RecipeBook>> listRecipeBooks(@PathVariable(name = "id") Long id) {
+        User user = this.userRepo.findOne(id);
+        List<RecipeBook> recipeBooks = this.recipeBookRepo.findByUserId(id);
+
+        return recipeBooks.isEmpty() ?
+                new ResponseEntity<>(recipeBooks, HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(recipeBooks, HttpStatus.OK);
+    }
+
 }

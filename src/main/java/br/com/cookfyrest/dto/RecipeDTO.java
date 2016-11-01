@@ -4,12 +4,13 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.cookfyrest.model.RecipeStep;
+import br.com.cookfyrest.model.domain.DifficultyDomain;
 
 public class RecipeDTO {
 	
 	public RecipeDTO(){}
 	
-	public RecipeDTO(String recipe_name, Long chef_id, String difficulty, Integer prepTime, Integer cookTime,
+	public RecipeDTO(String recipe_name, Long chef_id, DifficultyDomain difficulty, Integer prepTime, Integer cookTime,
 			Long category_id, List<RecipeStep> recipeStep, List<IngredientDTO> ingredients) {
 		this.recipe_name = recipe_name;
 		this.chef_id = chef_id;
@@ -26,7 +27,7 @@ public class RecipeDTO {
 	List<IngredientDTO> ingredients;
 	String recipe_name;
 	Long chef_id;
-	String difficulty;
+	DifficultyDomain difficulty;
 	Integer prepTime;
 	Integer cookTime;
 	public String getRecipe_name() {
@@ -45,11 +46,11 @@ public class RecipeDTO {
 		this.chef_id = chef_id;
 	}
 
-	public String getDifficulty() {
+	public DifficultyDomain getDifficulty() {
 		return difficulty;
 	}
 
-	public void setDifficulty(String difficulty) {
+	public void setDifficulty(DifficultyDomain difficulty) {
 		this.difficulty = difficulty;
 	}
 
