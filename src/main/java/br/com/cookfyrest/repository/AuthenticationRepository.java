@@ -1,6 +1,6 @@
 package br.com.cookfyrest.repository;
 
-import br.com.cookfyrest.model.Authentication;
+import br.com.cookfyrest.model.entity.Authentication;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

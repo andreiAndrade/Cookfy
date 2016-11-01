@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import br.com.cookfyrest.model.Recipe;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.entity.Recipe;
+import br.com.cookfyrest.model.entity.User;
 
 /**
  * Created by Andrei Andrade on 17/10/2016.

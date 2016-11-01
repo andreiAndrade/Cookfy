@@ -1,9 +1,8 @@
 package br.com.cookfyrest.repository;
 
-import br.com.cookfyrest.model.React;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.entity.React;
+import br.com.cookfyrest.model.entity.User;
 import br.com.cookfyrest.model.domain.ReactDomain;
-import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;

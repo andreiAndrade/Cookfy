@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cookfyrest.model.Category;
+import br.com.cookfyrest.model.entity.Category;
 import br.com.cookfyrest.repository.CategoryRepository;
 
 @RestController

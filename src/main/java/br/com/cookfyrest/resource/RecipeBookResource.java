@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.cookfyrest.dto.RecipeBookDTO;
-import br.com.cookfyrest.model.RecipeBook;
+import br.com.cookfyrest.model.dto.RecipeBookDTO;
+import br.com.cookfyrest.model.entity.RecipeBook;
 import br.com.cookfyrest.repository.RecipeBookRepository;
 import br.com.cookfyrest.repository.RecipeRepository;
 import br.com.cookfyrest.repository.UserRepository;

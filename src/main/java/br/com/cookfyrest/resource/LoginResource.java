@@ -1,9 +1,9 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.dto.AuthenticationDTO;
-import br.com.cookfyrest.model.Authentication;
-import br.com.cookfyrest.model.Identity;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.dto.AuthenticationDTO;
+import br.com.cookfyrest.model.entity.Authentication;
+import br.com.cookfyrest.model.entity.Identity;
+import br.com.cookfyrest.model.entity.User;
 import br.com.cookfyrest.repository.AuthenticationRepository;
 import br.com.cookfyrest.repository.IdentityRepository;
 import br.com.cookfyrest.repository.UserRepository;

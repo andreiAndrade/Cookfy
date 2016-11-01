@@ -1,9 +1,8 @@
-package br.com.cookfyrest.dto;
+package br.com.cookfyrest.model.dto;
 
-import java.util.Date;
 import java.util.List;
 
-import br.com.cookfyrest.model.RecipeStep;
+import br.com.cookfyrest.model.entity.RecipeStep;
 import br.com.cookfyrest.model.domain.DifficultyDomain;
 
 public class RecipeDTO {

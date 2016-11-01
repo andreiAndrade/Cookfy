@@ -1,4 +1,4 @@
-package br.com.cookfyrest.dto;
+package br.com.cookfyrest.model.dto;
 
 /**
  * Created by andrei.andrade on 23/09/2016.

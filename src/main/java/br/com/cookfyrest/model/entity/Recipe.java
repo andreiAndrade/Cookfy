@@ -1,4 +1,4 @@
-package br.com.cookfyrest.model;
+package br.com.cookfyrest.model.entity;
 
 import br.com.cookfyrest.model.domain.DifficultyDomain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;

@@ -1,4 +1,4 @@
-package br.com.cookfyrest.model;
+package br.com.cookfyrest.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
@@ -16,9 +16,11 @@ import java.util.Objects;
 @Entity
 @XmlRootElement
 @JsonIdentityInfo(generator = JSOGGenerator.class)
-public class Category implements Serializable {
+public class Ingredient implements Serializable {
+
     @Transient
-    private static final String SEQ = "seq_category";
+    private static final String SEQ = "seq_ingredient";
+
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
@@ -28,9 +30,14 @@ public class Category implements Serializable {
 
     private String description;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-    private List<Recipe> recipes;
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    private List<RecipeIngredient> recipeIngredients;
 
+    public Ingredient(){};
+    public Ingredient(String name){
+    	this.name = name;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -55,21 +62,21 @@ public class Category implements Serializable {
         this.description = description;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
+    public List<RecipeIngredient> getRecipeIngredients() {
+        return recipeIngredients;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
+    public void setRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+        this.recipeIngredients = recipeIngredients;
     }
 
-    public void addRecipe(Recipe recipe) {
-        if (Objects.nonNull(recipe)) {
-            if (Objects.isNull(this.recipes)) {
-                this.recipes = new ArrayList<>();
+    public void addRecipeIngredient(RecipeIngredient recipeIngredient) {
+        if (Objects.nonNull(recipeIngredient)) {
+            if (Objects.isNull(this.recipeIngredients)) {
+                this.recipeIngredients = new ArrayList<>();
             }
-            this.recipes.add(recipe);
-            recipe.addCategory(this);
+            this.recipeIngredients.add(recipeIngredient);
+            recipeIngredient.setIngredient(this);
         }
     }
 
@@ -78,13 +85,12 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Category category = (Category) o;
+        Ingredient that = (Ingredient) o;
 
-        if (id != null ? !id.equals(category.id) : category.id != null) return false;
-        if (name != null ? !name.equals(category.name) : category.name != null) return false;
-        if (description != null ? !description.equals(category.description) : category.description != null)
-            return false;
-        return recipes != null ? recipes.equals(category.recipes) : category.recipes == null;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
+        return recipeIngredients != null ? recipeIngredients.equals(that.recipeIngredients) : that.recipeIngredients == null;
 
     }
 
@@ -93,7 +99,7 @@ public class Category implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (recipes != null ? recipes.hashCode() : 0);
+        result = 31 * result + (recipeIngredients != null ? recipeIngredients.hashCode() : 0);
         return result;
     }
 }

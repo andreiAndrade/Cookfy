@@ -1,4 +1,4 @@
-package br.com.cookfyrest.dto;
+package br.com.cookfyrest.model.dto;
 
 public class IngredientDTO {
 	String ingredient;

@@ -1,7 +1,7 @@
 package br.com.cookfyrest.repository;
 
-import br.com.cookfyrest.model.Recipe;
-import br.com.cookfyrest.model.RecipeIngredient;
+import br.com.cookfyrest.model.entity.Recipe;
+import br.com.cookfyrest.model.entity.RecipeIngredient;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;

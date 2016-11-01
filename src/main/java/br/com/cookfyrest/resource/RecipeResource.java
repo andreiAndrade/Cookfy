@@ -1,8 +1,8 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.dto.IngredientDTO;
-import br.com.cookfyrest.dto.RecipeDTO;
-import br.com.cookfyrest.model.*;
+import br.com.cookfyrest.model.dto.IngredientDTO;
+import br.com.cookfyrest.model.dto.RecipeDTO;
+import br.com.cookfyrest.model.entity.*;
 import br.com.cookfyrest.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;

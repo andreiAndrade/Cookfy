@@ -1,7 +1,7 @@
 package br.com.cookfyrest.repository;
 
-import br.com.cookfyrest.model.Identity;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.entity.Identity;
+import br.com.cookfyrest.model.entity.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

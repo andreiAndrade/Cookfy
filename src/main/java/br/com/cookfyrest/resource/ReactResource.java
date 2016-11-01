@@ -1,7 +1,6 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.model.React;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.entity.React;
 import br.com.cookfyrest.repository.ReactRepository;
 import br.com.cookfyrest.repository.RecipeRepository;
 import br.com.cookfyrest.repository.UserRepository;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by Andrei Andrade on 28/10/2016.

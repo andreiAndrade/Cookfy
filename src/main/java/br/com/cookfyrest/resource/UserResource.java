@@ -1,9 +1,9 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.model.React;
-import br.com.cookfyrest.model.Recipe;
-import br.com.cookfyrest.model.RecipeBook;
-import br.com.cookfyrest.model.User;
+import br.com.cookfyrest.model.entity.React;
+import br.com.cookfyrest.model.entity.Recipe;
+import br.com.cookfyrest.model.entity.RecipeBook;
+import br.com.cookfyrest.model.entity.User;
 import br.com.cookfyrest.model.domain.ReactDomain;
 import br.com.cookfyrest.repository.ReactRepository;
 import br.com.cookfyrest.repository.RecipeBookRepository;

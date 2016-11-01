@@ -1,10 +1,6 @@
-package br.com.cookfyrest.model;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.voodoodyne.jackson.jsog.JSOGGenerator;
+package br.com.cookfyrest.model.entity;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
 /**

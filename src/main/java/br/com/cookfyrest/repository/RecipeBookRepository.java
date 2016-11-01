@@ -5,8 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 //import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import br.com.cookfyrest.model.Recipe;
-import br.com.cookfyrest.model.RecipeBook;
+import br.com.cookfyrest.model.entity.RecipeBook;
 
 //@RepositoryRestResource(collectionResourceRel = "recipeBook", path = "recipeBook")
 public interface RecipeBookRepository extends PagingAndSortingRepository<RecipeBook, Long>{
