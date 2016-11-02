@@ -60,6 +60,16 @@ INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('4', 4, 1);
 INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('1', 6, 1);
+INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
+VALUES ('1grama', 7, 1);
+INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
+VALUES ('1grama', 7, 4);
+INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
+VALUES ('1grama', 7, 5);
+INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
+VALUES ('2grama', 8, 5);
+INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
+VALUES ('2grama', 8, 4);
 
 
 insert INTO recipe_book (name, user_id)
