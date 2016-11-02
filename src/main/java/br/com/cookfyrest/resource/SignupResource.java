@@ -33,12 +33,12 @@ public class SignupResource {
         this.identityRepo = identityRepo;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity signup(@RequestBody User user) {
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> signup(@RequestBody User user) {
         userRepo.save(user);
         Identity identity = new Identity(user);
         identityRepo.save(identity);
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(user, HttpStatus.CREATED);
     }
 }
