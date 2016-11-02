@@ -1,5 +1,6 @@
 package br.com.cookfyrest.resource;
 
+import br.com.cookfyrest.model.domain.ReactDomain;
 import br.com.cookfyrest.model.dto.IngredientDTO;
 import br.com.cookfyrest.model.dto.RecipeDTO;
 import br.com.cookfyrest.model.entity.*;
@@ -32,6 +33,8 @@ public class RecipeResource {
     CategoryRepository categoryRepo;
     @Autowired
     RecipeStepRepository recipeStepRepo;
+    @Autowired
+    ReactRepository reactRepo;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Recipe> listRecipes() {
@@ -44,6 +47,15 @@ public class RecipeResource {
         recipe.setRecipeIngredients(recipeIngredientRepo.findByRecipe(recipe));
 
         return recipe;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{id}/reacts")
+    public void reactRecipe(@PathVariable(value = "id") Long recipeId, @RequestParam(value = "user") Long userId, @RequestParam(value = "react") String reactType) {
+        React react = new React();
+        react.setRecipe(recipeRepo.findOne(recipeId));
+        react.setUser(userRepo.findOne(userId));
+        react.setReact(ReactDomain.valueOf(reactType.toUpperCase()));
+        reactRepo.save(react);
     }
 
     @RequestMapping(value = "/ingredients",

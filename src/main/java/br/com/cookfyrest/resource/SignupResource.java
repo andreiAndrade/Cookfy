@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class SignupResource {
 
 
-    UserRepository userRepo;
-    IdentityRepository identityRepo;
+    private UserRepository userRepo;
+    private IdentityRepository identityRepo;
 
     @Autowired
     SignupResource(UserRepository userRepo, IdentityRepository identityRepo) {
