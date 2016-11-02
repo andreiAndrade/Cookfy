@@ -54,20 +54,12 @@ public class RecipeResource {
         return (List<Recipe>) recipeRepo.findAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Recipe findRecipe(@PathVariable(value = "id") Long id) {
-        Recipe recipe = recipeRepo.findOne(id);
-        recipe.setRecipeIngredients(recipeIngredientRepo.findByRecipe(recipe));
-
-        return recipe;
-    }
-
+    
 
     @RequestMapping(value = "/ingredients",
-    		method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, 
-    		produces = MediaType.APPLICATION_JSON_VALUE)
+    		method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<RecipeSearchPriority> findRecipesByIngredients(
-    		@RequestParam(value = "ingredient", required = false) String[] ingredients){
+    		@RequestParam(value = "ingredient") String[] ingredients){
     	List<Ingredient> listOfIngredients = new ArrayList<Ingredient>();
     	
     	List<RecipeSearchPriority> listOfPriorities = new ArrayList<>();
@@ -117,14 +109,6 @@ public class RecipeResource {
     	return listOfPriorities;
     }
 
-    @RequestMapping(
-            value = "/myRecipes",
-            method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Recipe> listRecipesOfAChef(@RequestParam(value = "chefId") Long chef_id) {
-
-        return recipeRepo.findRecipeByChef(userRepo.findOne(chef_id));
-    }
 
     @RequestMapping(method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -177,4 +161,13 @@ public class RecipeResource {
         return recipe;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Recipe findRecipe(@PathVariable(value = "id") Long id) {
+        Recipe recipe = recipeRepo.findOne(id);
+        recipe.setRecipeIngredients(recipeIngredientRepo.findByRecipe(recipe));
+
+        return recipe;
+    }
+
+    
 }
