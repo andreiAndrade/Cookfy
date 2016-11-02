@@ -31,7 +31,15 @@ public class RecipeBook implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     private User user;
 
-    @ManyToMany(mappedBy = "recipeBooks", cascade = CascadeType.ALL)
+
+    @ManyToMany
+    @JoinTable(
+            name = "RECIPE_RECIPE_BOOK",
+            joinColumns = {
+                    @JoinColumn(name = "RECIPEBOOK_ID")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "RECIPE_ID")
+            })
     private List<Recipe> recipes;
 
     public Long getId() {
@@ -65,13 +73,14 @@ public class RecipeBook implements Serializable {
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
-    
-    public RecipeBook(String name, User user){
-    	this.name = name;
-    	this.user = user;
+
+    public RecipeBook(String name, User user) {
+        this.name = name;
+        this.user = user;
     }
-    
-    public RecipeBook(){}
+
+    public RecipeBook() {
+    }
 
     public void addRecipe(Recipe recipe) {
         if (Objects.isNull(this.recipes)) {
@@ -80,11 +89,11 @@ public class RecipeBook implements Serializable {
         this.recipes.add(recipe);
         recipe.addRecipeBook(this);
     }
-    
+
     public void deleteRecipe(Recipe recipe) {
-		this.recipes.remove(recipe);
-		recipe.deleteRecipeBook(this);
-	}
+        this.recipes.remove(recipe);
+        recipe.deleteRecipeBook(this);
+    }
 
     @Override
     public boolean equals(Object o) {

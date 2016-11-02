@@ -2,14 +2,13 @@ package br.com.cookfyrest.model.entity;
 
 import br.com.cookfyrest.model.domain.DifficultyDomain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Entity
@@ -29,28 +28,25 @@ public class Recipe implements Serializable {
 
     private String description;
 
+    @Enumerated(EnumType.STRING)
     private DifficultyDomain difficulty;
 
-    @ManyToMany
-    @JoinTable(
-            name = "RECIPE_RECIPE_BOOK",
-            joinColumns = {
-                    @JoinColumn(name = "RECIPE_ID")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "RECIPEBOOK_ID")})
+    @JsonIgnore
+    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
     private List<RecipeBook> recipeBooks;
+
+    @Transient
+    private Set<String> recipeBooksName;
 
     @Transient
     private List<RecipeIngredient> recipeIngredients;
 
-    @ManyToMany
-    @JoinTable(
-            name = "RECIPE_CATEGORY",
-            joinColumns = {
-                    @JoinColumn(name = "RECIPE_ID")},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "CATEGORY_ID")})
+    @JsonIgnore
+    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
     private List<Category> categories;
+
+    @Transient
+    private Set<String> categoriesName;
 
     private Integer prepTime;
 
@@ -102,7 +98,9 @@ public class Recipe implements Serializable {
     }
 
     public void setRecipeBooks(List<RecipeBook> recipeBooks) {
-        this.recipeBooks = recipeBooks;
+        if (Objects.nonNull(recipeBooks)) {
+            this.recipeBooks = recipeBooks;
+        }
     }
 
     public void addRecipeBook(RecipeBook recipeBook) {
@@ -110,6 +108,17 @@ public class Recipe implements Serializable {
             this.recipeBooks = new ArrayList<>();
         }
         this.recipeBooks.add(recipeBook);
+    }
+
+    public Set<String> getRecipeBooksName() {
+        if (Objects.isNull(this.recipeBooksName)) this.recipeBooksName= new HashSet<>();
+        if (Objects.nonNull(this.recipeBooks))
+            this.recipeBooks.forEach(c -> recipeBooksName.add(c.getName()));
+        return recipeBooksName;
+    }
+
+    public void setRecipeBooksName(Set<String> recipeBooksName) {
+        this.recipeBooksName = recipeBooksName;
     }
 
     public void deleteRecipeBook(RecipeBook recipeBook) {
@@ -149,6 +158,13 @@ public class Recipe implements Serializable {
             }
             this.categories.add(category);
         }
+    }
+
+    public Set<String> getCategoriesName() {
+        if (Objects.isNull(this.categoriesName)) this.categoriesName = new HashSet<>();
+        if (Objects.nonNull(this.categories))
+            this.categories.forEach(c -> categoriesName.add(c.getName()));
+        return categoriesName;
     }
 
     public Integer getPrepTime() {

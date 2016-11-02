@@ -24,11 +24,19 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
+    @Column(unique = true)
     private String name;
 
     private String description;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "RECIPE_CATEGORY",
+            joinColumns = {
+                    @JoinColumn(name = "CATEGORY_ID")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "RECIPE_ID")
+            })
     private List<Recipe> recipes;
 
     public Long getId() {

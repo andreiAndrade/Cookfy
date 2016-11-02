@@ -1,10 +1,10 @@
 package br.com.cookfyrest.resource;
 
+import br.com.cookfyrest.model.domain.ReactDomain;
 import br.com.cookfyrest.model.entity.React;
 import br.com.cookfyrest.model.entity.Recipe;
 import br.com.cookfyrest.model.entity.RecipeBook;
 import br.com.cookfyrest.model.entity.User;
-import br.com.cookfyrest.model.domain.ReactDomain;
 import br.com.cookfyrest.repository.ReactRepository;
 import br.com.cookfyrest.repository.RecipeBookRepository;
 import br.com.cookfyrest.repository.RecipeRepository;
@@ -62,7 +62,10 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}/reacts")
-    public ResponseEntity<List<React>> listFavorites(@PathVariable(name = "id") Long id, @RequestParam(name = "react", required = false) String[] reactsType) {
+    public ResponseEntity<List<React>> listFavorites(
+            @PathVariable(name = "id") Long id,
+            @RequestParam(name = "react", required = false) String[] reactsType
+    ) {
         List<React> reacts = new ArrayList<>();
 
         if (reactsType == null || reactsType.length == 0) {
