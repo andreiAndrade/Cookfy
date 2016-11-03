@@ -17,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andrei Andrade on 29/10/2016.
@@ -62,7 +62,7 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}/reacts")
-    public ResponseEntity<List<React>> listFavorites(
+    public ResponseEntity<List<Recipe>> listFavorites(
             @PathVariable(name = "id") Long id,
             @RequestParam(name = "react", required = false) String[] reactsType
     ) {
@@ -72,21 +72,13 @@ public class UserResource {
             reacts = this.userRepo.findOne(id).getMyReacts();
         } else {
             for (String react : reactsType) {
-                ReactDomain reactDomain;
-
-                try {
-                    reactDomain = ReactDomain.valueOf(react);
-                } catch (IllegalFormatException ife) {
-                    continue;
-                }
-
-                reacts.addAll(reactRepo.findByReactAndUser(reactDomain, userRepo.findOne(id)));
+                reacts.addAll(reactRepo.findByReactAndUser(ReactDomain.valueOf(react), userRepo.findOne(id)));
             }
         }
 
         return reacts.isEmpty() ?
-                new ResponseEntity<>(reacts, HttpStatus.NO_CONTENT) :
-                new ResponseEntity<>(reacts, HttpStatus.OK);
+                new ResponseEntity<>(reacts.stream().map(React::getRecipe).collect(Collectors.toList()), HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(reacts.stream().map(React::getRecipe).collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}/recipes", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,6 +1,7 @@
 package br.com.cookfyrest.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import javax.persistence.*;
@@ -48,6 +49,7 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<React> myReacts;
 
