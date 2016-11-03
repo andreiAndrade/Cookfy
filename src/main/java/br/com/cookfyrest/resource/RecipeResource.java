@@ -45,10 +45,21 @@ public class RecipeResource {
     @RequestMapping(method = RequestMethod.POST, path = "/{id}/reacts")
     public void reactRecipe(@PathVariable(value = "id") Long recipeId, @RequestParam(value = "user") Long userId, @RequestParam(value = "react") String reactType) {
         React react = new React();
+
         react.setRecipe(recipeRepo.findOne(recipeId));
         react.setUser(userRepo.findOne(userId));
         react.setReact(ReactDomain.valueOf(reactType.toUpperCase()));
         reactRepo.save(react);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{id}/reacts")
+    public void unreactRecipe(@PathVariable(value = "id") Long recipeId, @RequestParam(value = "user") Long userId, @RequestParam(value = "react") String reactType) {
+        React react = reactRepo.findByRecipeAndUserAndReact(
+                recipeRepo.findOne(recipeId),
+                userRepo.findOne(userId),
+                ReactDomain.valueOf(reactType));
+
+        reactRepo.delete(react);
     }
 
     @RequestMapping(value = "/ingredients",

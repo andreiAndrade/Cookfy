@@ -1,6 +1,7 @@
 package br.com.cookfyrest.repository;
 
 import br.com.cookfyrest.model.entity.React;
+import br.com.cookfyrest.model.entity.Recipe;
 import br.com.cookfyrest.model.entity.User;
 import br.com.cookfyrest.model.domain.ReactDomain;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -16,4 +17,5 @@ public interface ReactRepository extends PagingAndSortingRepository<React, Long>
 
     List<React> findByReactAndUser(ReactDomain react, User users);
 
+    React findByRecipeAndUserAndReact(Recipe recipe, User user, ReactDomain react);
 }
