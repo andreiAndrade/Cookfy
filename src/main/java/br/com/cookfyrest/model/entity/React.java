@@ -23,13 +23,13 @@ public class React implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Recipe recipe;
 
     @Transient
     private Long recipeId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private User user;
 
     @Transient

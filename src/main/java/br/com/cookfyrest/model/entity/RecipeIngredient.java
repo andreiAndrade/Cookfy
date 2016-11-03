@@ -24,7 +24,7 @@ public class RecipeIngredient implements Serializable{
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Recipe recipe;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Ingredient ingredient;
 
     private String measure;

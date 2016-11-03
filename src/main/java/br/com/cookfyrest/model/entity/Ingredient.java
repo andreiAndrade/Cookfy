@@ -30,7 +30,7 @@ public class Ingredient implements Serializable {
 
     private String description;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ingredient", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<RecipeIngredient> recipeIngredients;
 
     public Ingredient(){};

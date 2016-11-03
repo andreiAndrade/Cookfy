@@ -43,17 +43,18 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User findUser(@PathVariable(name = "id") Long id) {
-        return userRepo.findOne(id);
+        User user = userRepo.findOne(id);
+        return user;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void saveUser(@RequestBody User user) {
-        this.userRepo.save(user);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User saveUser(@RequestBody User user) {
+        return this.userRepo.save(user);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateUser(@RequestBody User user) {
-        this.userRepo.save(user);
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User updateUser(@RequestBody User user) {
+        return this.userRepo.save(user);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)

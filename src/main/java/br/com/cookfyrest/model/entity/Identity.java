@@ -16,7 +16,7 @@ public class Identity {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User user;
 
     private String hash;

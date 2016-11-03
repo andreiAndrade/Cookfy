@@ -33,7 +33,7 @@ public class Recipe implements Serializable {
     private DifficultyDomain difficulty;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<RecipeBook> recipeBooks;
 
     @Transient
@@ -43,7 +43,7 @@ public class Recipe implements Serializable {
     private List<RecipeIngredient> recipeIngredients;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "recipes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Category> categories;
 
     private Integer prepTime;
@@ -51,13 +51,13 @@ public class Recipe implements Serializable {
     private Integer cookTime;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User chef;
 
     @OneToMany(mappedBy = "recipe")
     private List<React> reacts;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recipe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<RecipeStep> recipeSteps;
 
     public Long getId() {

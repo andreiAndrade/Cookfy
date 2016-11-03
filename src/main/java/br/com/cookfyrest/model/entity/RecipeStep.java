@@ -26,7 +26,7 @@ public class RecipeStep implements Serializable {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Recipe recipe;
 
     public RecipeStep(){}
