@@ -60,6 +60,9 @@ public class Recipe implements Serializable {
     @OneToMany(mappedBy = "recipe", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<RecipeStep> recipeSteps;
 
+    @Transient
+    private Boolean favority;
+
     public Long getId() {
         return id;
     }
@@ -227,6 +230,13 @@ public class Recipe implements Serializable {
         }
     }
 
+    public Boolean getFavority() {
+        return favority;
+    }
+
+    public void setFavority(Boolean favority) {
+        this.favority = favority;
+    }
 
     @Override
     public boolean equals(Object o) {

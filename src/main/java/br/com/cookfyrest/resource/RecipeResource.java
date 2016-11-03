@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Andrei Andrade on 24/10/2016.
@@ -168,8 +169,10 @@ public class RecipeResource {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Recipe findRecipe(@PathVariable(value = "id") Long id) {
+    public Recipe findRecipe(@PathVariable(value = "id") Long id, @RequestParam(name = "user", required = false) Long userId) {
         Recipe recipe = recipeRepo.findOne(id);
+        React favority = reactRepo.findByRecipeAndUserAndReact(recipe, userRepo.findOne(userId), ReactDomain.valueOf("FAVORITY"));
+        recipe.setFavority(Objects.nonNull(favority));
         recipe.setRecipeIngredients(recipeIngredientRepo.findByRecipe(recipe));
 
         return recipe;
