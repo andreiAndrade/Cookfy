@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -45,13 +46,11 @@ public class Recipe implements Serializable {
     @ManyToMany(mappedBy = "recipes", cascade = CascadeType.ALL)
     private List<Category> categories;
 
-    @Transient
-    private Set<String> categoriesName;
-
     private Integer prepTime;
 
     private Integer cookTime;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     private User chef;
 
@@ -160,11 +159,8 @@ public class Recipe implements Serializable {
         }
     }
 
-    public Set<String> getCategoriesName() {
-        if (Objects.isNull(this.categoriesName)) this.categoriesName = new HashSet<>();
-        if (Objects.nonNull(this.categories))
-            this.categories.forEach(c -> categoriesName.add(c.getName()));
-        return categoriesName;
+    public List<String> getCategoriesName() {
+        return this.categories.stream().map(Category::getName).collect(Collectors.toList());
     }
 
     public Integer getPrepTime() {
@@ -189,6 +185,10 @@ public class Recipe implements Serializable {
 
     public void setChef(User chef) {
         this.chef = chef;
+    }
+
+    public Long getChefId() {
+        return this.chef.getId();
     }
 
     public List<React> getReacts() {
