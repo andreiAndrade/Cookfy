@@ -171,7 +171,10 @@ public class RecipeResource {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe findRecipe(@PathVariable(value = "id") Long id, @RequestParam(name = "user", required = false) Long userId) {
         Recipe recipe = recipeRepo.findOne(id);
-        React favority = reactRepo.findByRecipeAndUserAndReact(recipe, userRepo.findOne(userId), ReactDomain.valueOf("FAVORITY"));
+        React favority = null;
+        if (Objects.nonNull(userId)) {
+            favority = reactRepo.findByRecipeAndUserAndReact(recipe, userRepo.findOne(userId), ReactDomain.valueOf("FAVORITY"));
+        }
         recipe.setFavority(Objects.nonNull(favority));
         recipe.setRecipeIngredients(recipeIngredientRepo.findByRecipe(recipe));
 
