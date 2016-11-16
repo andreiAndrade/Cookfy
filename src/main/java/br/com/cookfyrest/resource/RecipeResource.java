@@ -63,9 +63,11 @@ public class RecipeResource {
         reactRepo.delete(react);
     }
 
+    //esta retornando apenas receitas
     @RequestMapping(value = "/ingredients",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<RecipeSearchPriority> findRecipesByIngredients(
+    //public List<RecipeSearchPriority> findRecipesByIngredients(
+    public List<Recipe> findRecipesByIngredients(
             @RequestParam(value = "ingredient") String[] ingredients) {
         List<Ingredient> listOfIngredients = new ArrayList<Ingredient>();
 
@@ -113,7 +115,15 @@ public class RecipeResource {
                 }
             }
         }
-        return listOfPriorities;
+        
+        //deve ser apagado futuramente
+        List<Recipe> receitasSimplesParaRetornoParaAPaula = new ArrayList<Recipe>();
+        for (RecipeSearchPriority i : listOfPriorities){
+        	receitasSimplesParaRetornoParaAPaula.add(i.getRecipe());
+        }
+        
+        return receitasSimplesParaRetornoParaAPaula;
+        //return listOfPriorities;
     }
 
 
