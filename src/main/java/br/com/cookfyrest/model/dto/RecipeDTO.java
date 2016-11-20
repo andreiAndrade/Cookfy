@@ -10,7 +10,7 @@ public class RecipeDTO {
 	public RecipeDTO(){}
 	
 	public RecipeDTO(String recipe_name, Long chef_id, DifficultyDomain difficulty, Integer prepTime, Integer cookTime,
-			Long category_id, List<RecipeStep> recipeStep, List<String> ingredient_measure) {
+			Long category_id, List<RecipeStep> recipeStep, List<String> ingredient_measure, String picture) {
 		this.recipe_name = recipe_name;
 		this.chef_id = chef_id;
 		this.difficulty = difficulty;
@@ -19,6 +19,7 @@ public class RecipeDTO {
 		this.category_id = category_id;
 		this.recipeStep = recipeStep;
 		this.ingredient_measure = ingredient_measure;
+		this.picture = picture;
 	}
 	
 	Long category_id;
@@ -29,6 +30,16 @@ public class RecipeDTO {
 	DifficultyDomain difficulty;
 	Integer prepTime;
 	Integer cookTime;
+	String picture;
+	
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	public String getRecipe_name() {
 		return recipe_name;
 	}

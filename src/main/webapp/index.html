@@ -48,7 +48,8 @@ success response:<br>
 "cookTime": "01:00:00",<br>
 "chef": {},<br>
 "reacts": [],<br>
-"recipeSteps": []<br>
+"recipeSteps": [],<br>
+"picture": String<br>
 }<br>
 <br>
 http://cookfy.herokuapp.com/recipeBook?userId=value<br>
@@ -176,6 +177,7 @@ success response:<br>
 ]<br>
 }<br>
 
+//create recipe
 https://cookfy.herokuapp.com/recipes<br>
 <br>
 method: POST<br>
@@ -195,7 +197,8 @@ request:<br>
 ],<br>
 "ingredient_measure": String [<br>
 //ingredients e medidas juntos separados por ';' Ex "alho;1 dente", "sal;1 colher de sopa"<br>
-]<br>
+],<br>
+"picture": String<br>
 }<br>
 success response:<br>
 {<br>
@@ -266,11 +269,11 @@ http://cookfy.herokuapp.com/recipes/ingredients?ingredient=value&ingredient=valu
 method: GET<br>
 request:<br>
 success response:<br>
-[
-  {
-    "recipe": {},
-    "ingredient [{}]"
-    "priority": int
+[<br>
+{<br>
+receitas<br>
+}<br>
+]<br>
 <br>
 </body>
 </html>

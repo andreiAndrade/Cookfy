@@ -139,7 +139,6 @@ public class RecipeResource {
         List<Category> category = new ArrayList<Category>();
         category.add(categoryRepo.findOne(recipeDTO.getCategory_id()));
 
-
         for (RecipeStep step : recipeDTO.getRecipeStep()) {
             description = description + step.getDescription() + ";";
         }
@@ -152,6 +151,7 @@ public class RecipeResource {
         recipe.setPrepTime(recipeDTO.getPrepTime());
         recipe.setDifficulty(recipeDTO.getDifficulty());
         recipe.setName(recipeDTO.getRecipe_name());
+        recipe.setPicture(recipeDTO.getPicture());
 
         recipe = recipeRepo.save(recipe);
 
