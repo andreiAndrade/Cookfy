@@ -49,8 +49,19 @@ public class Recipe implements Serializable {
     private Integer prepTime;
 
     private Integer cookTime;
+    
+    @Column( length = 100000 )
+    private String picture;
 
-    @JsonIgnore
+    public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	@JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private User chef;
 
