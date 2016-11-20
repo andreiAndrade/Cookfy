@@ -50,7 +50,8 @@ public class Recipe implements Serializable {
 
     private Integer cookTime;
     
-    String picture;
+    @Column( length = 100000 )
+    private String picture;
 
     public String getPicture() {
 		return picture;

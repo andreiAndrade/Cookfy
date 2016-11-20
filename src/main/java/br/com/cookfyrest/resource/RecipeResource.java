@@ -1,18 +1,37 @@
 package br.com.cookfyrest.resource;
 
-import br.com.cookfyrest.dto.RecipeSearchPriority;
-import br.com.cookfyrest.model.domain.ReactDomain;
-import br.com.cookfyrest.model.dto.RecipeDTO;
-import br.com.cookfyrest.model.entity.*;
-import br.com.cookfyrest.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.cookfyrest.dto.RecipeSearchPriority;
+import br.com.cookfyrest.model.domain.ReactDomain;
+import br.com.cookfyrest.model.dto.RecipeDTO;
+import br.com.cookfyrest.model.entity.Category;
+import br.com.cookfyrest.model.entity.Ingredient;
+import br.com.cookfyrest.model.entity.React;
+import br.com.cookfyrest.model.entity.Recipe;
+import br.com.cookfyrest.model.entity.RecipeIngredient;
+import br.com.cookfyrest.model.entity.RecipeStep;
+import br.com.cookfyrest.repository.CategoryRepository;
+import br.com.cookfyrest.repository.IngredientRepository;
+import br.com.cookfyrest.repository.ReactRepository;
+import br.com.cookfyrest.repository.RecipeIngredientRepository;
+import br.com.cookfyrest.repository.RecipeRepository;
+import br.com.cookfyrest.repository.RecipeStepRepository;
+import br.com.cookfyrest.repository.UserRepository;
 
 /**
  * Created by Andrei Andrade on 24/10/2016.
@@ -177,7 +196,24 @@ public class RecipeResource {
 
         return recipe;
     }
-
+    
+    @RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Recipe updateRecipe(@RequestBody Recipe recipe){
+    	return recipeRepo.save(recipe);
+    }
+    
+    @RequestMapping(
+			value = "{recipeId}",
+			method = RequestMethod.DELETE, 
+			consumes = MediaType.APPLICATION_JSON_VALUE, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteRecipe(@PathVariable("recipeId") long id){
+    	recipeRepo.delete(id);
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
+    
     @RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Recipe findRecipe(@PathVariable(value = "id") Long id, @RequestParam(name = "user", required = false) Long userId) {
         Recipe recipe = recipeRepo.findOne(id);
