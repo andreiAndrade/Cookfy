@@ -10,9 +10,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.NoResultException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andrei Andrade on 24/10/2016.
@@ -36,6 +39,8 @@ public class RecipeResource {
     RecipeStepRepository recipeStepRepo;
     @Autowired
     ReactRepository reactRepo;
+
+    private static final String[] prepositions = {"a", "com", "de", "em", "para", "por", "sem", "sobre", "à", "á"};
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Recipe> listRecipes() {
@@ -181,5 +186,22 @@ public class RecipeResource {
         return recipe;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Recipe> findByName(@RequestParam(name = "name") String name) {
+        String preparedName = prepareNameForQuery(name);
 
+        return recipeRepo.findByName(preparedName);
+    }
+
+    private String prepareNameForQuery(String name) {
+        String preparedName = name;
+
+        for (String preposition : prepositions) {
+            preparedName = preparedName.replace(" " + preposition + " ", "%");
+        }
+
+        preparedName = preparedName.replace(" ", "%");
+
+        return preparedName;
+    }
 }

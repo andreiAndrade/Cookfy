@@ -10,11 +10,13 @@ import br.com.cookfyrest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.orm.hibernate4.SpringSessionContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.swing.*;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
@@ -51,7 +53,6 @@ public class LoginResource {
 
             return new AuthenticationDTO(auth.getToken(), auth.getUser().getId());
         }
-
         return null;
     }
 }
