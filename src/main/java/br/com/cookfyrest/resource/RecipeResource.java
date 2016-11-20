@@ -201,6 +201,7 @@ public class RecipeResource {
         }
 
         preparedName = preparedName.replace(" ", "%");
+        preparedName = "%" + preparedName + "%";
 
         return preparedName;
     }
