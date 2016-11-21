@@ -211,7 +211,21 @@ insert INTO category(name, description)
 VALUES('Todas', 'Todas as receitas numa categoria');
 
 insert INTO recipe_category (category_id, recipe_id)
-VALUES(9, 1);
+VALUES(1, 1);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(1, 2);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 3);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(2, 4);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 5);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(3, 6);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(4, 7);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(4, 8);
 insert INTO recipe_category (category_id, recipe_id)
 VALUES(9, 2);
 insert INTO recipe_category (category_id, recipe_id)
