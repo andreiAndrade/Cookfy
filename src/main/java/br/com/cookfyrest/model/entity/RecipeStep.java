@@ -20,6 +20,7 @@ public class RecipeStep implements Serializable {
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
+    //teste
 
     @Column(name = "STEP_ORDER")
     private Integer stepOrder;
