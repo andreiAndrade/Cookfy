@@ -41,6 +41,9 @@ public class User implements Serializable {
     @Transient
     private String adapter;
 
+    @Column( length = 100000)
+    private String picture;
+
     @Column(name = "DATE_CREATED")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
@@ -166,6 +169,13 @@ public class User implements Serializable {
 //        this.myRecipes = myRecipes;
 //    }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     @Override
     public boolean equals(Object o) {
