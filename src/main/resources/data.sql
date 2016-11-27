@@ -226,9 +226,15 @@ VALUES(3, 5);
 insert INTO recipe_category (category_id, recipe_id)
 VALUES(3, 6);
 insert INTO recipe_category (category_id, recipe_id)
-VALUES(4, 7);
+VALUES(4, 1);
 insert INTO recipe_category (category_id, recipe_id)
-VALUES(4, 8);
+VALUES(4, 2);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(5, 5);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(5, 6);
+insert INTO recipe_category (category_id, recipe_id)
+VALUES(5, 7);
 insert INTO recipe_category (category_id, recipe_id)
 VALUES(9, 2);
 insert INTO recipe_category (category_id, recipe_id)
