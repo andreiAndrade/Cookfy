@@ -188,6 +188,9 @@ VALUES ('1 xicara de cha', 32, 8);
 
 insert INTO recipe_book (name, user_id)
 VALUES ('Cafe da manha', '3');
+insert INTO recipe_book (name, user_id)
+VALUES ('Brunch', '3');
+
 
 insert INTO category (name, description)
 VALUES ('Comida Mexicana', 'Coma assistindo RBD');
