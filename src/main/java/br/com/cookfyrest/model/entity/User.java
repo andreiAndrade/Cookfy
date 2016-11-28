@@ -40,11 +40,12 @@ public class User implements Serializable {
 
     @Transient
     private String adapter;
-
-    @Column( length = 100000)
+    
+    @Column( length = 100000 )
     private String picture;
 
-    @Column(name = "DATE_CREATED")
+
+	@Column(name = "DATE_CREATED")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
