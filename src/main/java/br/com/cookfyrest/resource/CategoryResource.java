@@ -2,7 +2,9 @@ package br.com.cookfyrest.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,8 +33,13 @@ public class CategoryResource {
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			value = "{categoryId}"
 			)
-	public Category showCategory(@PathVariable("categoryId") Long category_id){
-		return categoryRepository.findOne(category_id);
+	public ResponseEntity<Category> showCategory(@PathVariable("categoryId") Long category_id){
+		Category category = categoryRepository.findOne(category_id);
+		if (category != null) {
+			return new ResponseEntity<>(category, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 	
 	
