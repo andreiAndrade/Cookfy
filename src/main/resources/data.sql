@@ -56,23 +56,22 @@ INSERT INTO ingredient (description, name) VALUES ('teste','chocolate granulado'
 INSERT INTO ingredient (description, name) VALUES ('teste','amora');
 INSERT INTO ingredient (description, name) VALUES ('teste','leite condensado');
 
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (15, 'Coloque o feijao, a batata e a agua numa panela grande e leve ao fogo;Cozinhe ate a batata ficar macia;Bata no liquidificador e leve de volta ao fogo;A parte, aqueca o oleo;Refogue o alho e a cebola;Junte esse tempero a panela com o feijao e tempere com sal;Quando estiver no ponto desejado de cozimento, tire do fogo e sirva;Regue cada porcao com um fio de azeite;', 'EASY', 'Sopa Caipira', 15,3 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (10, 'Elimine as gorduras dos bifes;Tempere com sal, pimenta, alho e salsinha. Reserve por 30 minutos;Bata os ovos, adicione a agua, sal e o queijo;Empane os vifes, um a um, passe o primeiro na farinha de trigo, depois no preparado de ovos e, por ultimo, na farinha de rosca;Aqueca o oleo numa frigideira e frite os bifes ate dourarem de um lado;Vire e frite do outro lado;Escorra em papel-toalha e sirva;', 'EASY', 'Bife a milanesa', 30,2 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (10, 'Tempere os bifes com sal e pimenta, e passe na farinha;Frite de ambos os lados na margarina misturada com o azeite; Reserve ainda quentes;A gordura que ficou, acrescente a cerveja e deixe ferver ate reduzir a metade;Adicione o suco de limao e o creme de leite;Ferva por mais 2 minutos;Tempere com sal e pimenta, regue os bifes com este molho e sirva;', 'EASY', 'Bife com cerveja', 30, 1);
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (10, 'Pegue a cebola e refogue em um pouco de azeite;Limpe os brocolis e separe em buques;Misture ao refogado junto com as batatas descascadas e cortadas em pequenos pedacos;Acrescente a agua, tempere e cozinhe;Quando tudo estiver cozido bata no liquidificador e passe por uma peneira grossa;Junte a margarina e sirva;', 'EASY', 'Creme de brocolis', 15,4 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (20, 'Misture todos os ingredientes ate a massa ficar homogenea;Faca bolinhas e amasse com um garfo;Preaqueca o forno;Coloque a massa numa forma levemente untada com margarina;Asse em forno medio;', 'EASY', 'Biscoitos da vovo', 10,1 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (25, 'Bata as claras em neve e reserve;Bata as gemas, o acucar e o amido de milho;Acrescente, sem bater, a farinha, o leite e o fermento;Adicione o coco e o chocolate granulado;Envolva delicadamente as claras em neve;Unte uma forma com furo central e leve ao forno preaquecido por 25 minutos;', 'EASY', 'Bolo formigueiro', 20,2 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (15, 'Lave as amoras;Coloque numa panela com a agua e ferva ate que fiquem macias e se desmanchando;Passe tudo por um pano fino;Leve ao fogo com o acucar e ferva mais um pouco ate engrossar;Se quiser conservar essa geleia, coloque em vidros e esterilize em banho-maria;', 'EASY', 'Geleia de amora', 15,3 );
-INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id)
-VALUES (30, 'Coloque todos os ingredientes em uma panela grossa;Misture bem e leve ao fogo baixo, mexendo sempre com uma colher de pau;Quando comecar a engrossar e soltar da panela, esta pronto;Unte a pedra da pia com manteiga e, com duas colheres de sopa, va pingando a massa;Deixe esfriar para retirar;', 'EASY', 'Cocada', 30,4 );
-
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (15, 'Coloque o feijao, a batata e a agua numa panela grande e leve ao fogo;Cozinhe ate a batata ficar macia;Bata no liquidificador e leve de volta ao fogo;A parte, aqueca o oleo;Refogue o alho e a cebola;Junte esse tempero a panela com o feijao e tempere com sal;Quando estiver no ponto desejado de cozimento, tire do fogo e sirva;Regue cada porcao com um fio de azeite;', 'EASY', 'Sopa Caipira', 15,3, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (10, 'Elimine as gorduras dos bifes;Tempere com sal, pimenta, alho e salsinha. Reserve por 30 minutos;Bata os ovos, adicione a agua, sal e o queijo;Empane os vifes, um a um, passe o primeiro na farinha de trigo, depois no preparado de ovos e, por ultimo, na farinha de rosca;Aqueca o oleo numa frigideira e frite os bifes ate dourarem de um lado;Vire e frite do outro lado;Escorra em papel-toalha e sirva;', 'EASY', 'Bife a milanesa', 30,2, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (10, 'Tempere os bifes com sal e pimenta, e passe na farinha;Frite de ambos os lados na margarina misturada com o azeite; Reserve ainda quentes;A gordura que ficou, acrescente a cerveja e deixe ferver ate reduzir a metade;Adicione o suco de limao e o creme de leite;Ferva por mais 2 minutos;Tempere com sal e pimenta, regue os bifes com este molho e sirva;', 'EASY', 'Bife com cerveja', 30, 1, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (10, 'Pegue a cebola e refogue em um pouco de azeite;Limpe os brocolis e separe em buques;Misture ao refogado junto com as batatas descascadas e cortadas em pequenos pedacos;Acrescente a agua, tempere e cozinhe;Quando tudo estiver cozido bata no liquidificador e passe por uma peneira grossa;Junte a margarina e sirva;', 'EASY', 'Creme de brocolis', 15,4, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (20, 'Misture todos os ingredientes ate a massa ficar homogenea;Faca bolinhas e amasse com um garfo;Preaqueca o forno;Coloque a massa numa forma levemente untada com margarina;Asse em forno medio;', 'EASY', 'Biscoitos da vovo', 10,1, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (25, 'Bata as claras em neve e reserve;Bata as gemas, o acucar e o amido de milho;Acrescente, sem bater, a farinha, o leite e o fermento;Adicione o coco e o chocolate granulado;Envolva delicadamente as claras em neve;Unte uma forma com furo central e leve ao forno preaquecido por 25 minutos;', 'EASY', 'Bolo formigueiro', 20,2, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (15, 'Lave as amoras;Coloque numa panela com a agua e ferva ate que fiquem macias e se desmanchando;Passe tudo por um pano fino;Leve ao fogo com o acucar e ferva mais um pouco ate engrossar;Se quiser conservar essa geleia, coloque em vidros e esterilize em banho-maria;', 'EASY', 'Geleia de amora', 15,3, '');
+INSERT INTO recipe (cook_time, description, difficulty, name, prep_time, chef_id, picture)
+VALUES (30, 'Coloque todos os ingredientes em uma panela grossa;Misture bem e leve ao fogo baixo, mexendo sempre com uma colher de pau;Quando comecar a engrossar e soltar da panela, esta pronto;Unte a pedra da pia com manteiga e, com duas colheres de sopa, va pingando a massa;Deixe esfriar para retirar;', 'EASY', 'Cocada', 30,4, '');
 
 INSERT INTO recipe_ingredient (measure, ingredient_id, recipe_id)
 VALUES ('4 bifes',16,1);
