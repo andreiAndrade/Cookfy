@@ -43,8 +43,15 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User findUser(@PathVariable(name = "id") Long id) {
-        User user = userRepo.findOne(id);
-        return user;
+        return userRepo.findOne(id);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User updateUser(@PathVariable(name = "id") Long id, @RequestBody User user) {
+        User oldUser = userRepo.findOne(id);
+        oldUser.setPicture(user.getPicture());
+        return userRepo.save(oldUser);
+
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
