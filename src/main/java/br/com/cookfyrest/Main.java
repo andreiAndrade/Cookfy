@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = {
-        "br.com.cookfyrest.model"
+        "br.com.cookfyrest.model.entity"
 })
 @EnableJpaRepositories(basePackages = {
         "br.com.cookfyrest.repository"

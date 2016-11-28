@@ -3,6 +3,7 @@ package br.com.cookfyrest.model.entity;
 import br.com.cookfyrest.model.domain.DifficultyDomain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.voodoodyne.jackson.jsog.JSOGGenerator;
 
 import javax.persistence.*;
@@ -47,9 +48,11 @@ public class Recipe implements Serializable {
     @ManyToMany(mappedBy = "recipes", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Category> categories;
 
-    private Integer prepTime;
+    @Column(name = "prep_time")
+    private int prepTime;
 
-    private Integer cookTime;
+    @Column(name = "cook_time")
+    private int cookTime;
     
     @Column( length = 100000 )
     private String picture;
@@ -178,22 +181,6 @@ public class Recipe implements Serializable {
         return this.categories.stream().map(Category::getName).collect(Collectors.toList());
     }
 
-    public Integer getPrepTime() {
-        return prepTime;
-    }
-
-    public void setPrepTime(Integer prepTime) {
-        this.prepTime = prepTime;
-    }
-
-    public Integer getCookTime() {
-        return cookTime;
-    }
-
-    public void setCookTime(Integer cookTime) {
-        this.cookTime = cookTime;
-    }
-
     public User getChef() {
         return chef;
     }
@@ -250,6 +237,22 @@ public class Recipe implements Serializable {
         this.favority = favority;
     }
 
+    public void setPrepTime(int prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public void setCookTime(int cookTime) {
+        this.cookTime = cookTime;
+    }
+
+    public int getPrepTime() {
+        return prepTime;
+    }
+
+    public int getCookTime() {
+        return cookTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -257,20 +260,23 @@ public class Recipe implements Serializable {
 
         Recipe recipe = (Recipe) o;
 
+        if (prepTime != recipe.prepTime) return false;
+        if (cookTime != recipe.cookTime) return false;
         if (id != null ? !id.equals(recipe.id) : recipe.id != null) return false;
         if (name != null ? !name.equals(recipe.name) : recipe.name != null) return false;
         if (description != null ? !description.equals(recipe.description) : recipe.description != null) return false;
-        if (difficulty != null ? !difficulty.equals(recipe.difficulty) : recipe.difficulty != null) return false;
+        if (difficulty != recipe.difficulty) return false;
         if (recipeBooks != null ? !recipeBooks.equals(recipe.recipeBooks) : recipe.recipeBooks != null) return false;
+        if (recipeBooksName != null ? !recipeBooksName.equals(recipe.recipeBooksName) : recipe.recipeBooksName != null)
+            return false;
         if (recipeIngredients != null ? !recipeIngredients.equals(recipe.recipeIngredients) : recipe.recipeIngredients != null)
             return false;
         if (categories != null ? !categories.equals(recipe.categories) : recipe.categories != null) return false;
-        if (prepTime != null ? !prepTime.equals(recipe.prepTime) : recipe.prepTime != null) return false;
-        if (cookTime != null ? !cookTime.equals(recipe.cookTime) : recipe.cookTime != null) return false;
+        if (picture != null ? !picture.equals(recipe.picture) : recipe.picture != null) return false;
         if (chef != null ? !chef.equals(recipe.chef) : recipe.chef != null) return false;
-        if (reacts != null ? !reacts.equals(recipe.reacts) : recipe.reacts != null)
-            return false;
-        return recipeSteps != null ? recipeSteps.equals(recipe.recipeSteps) : recipe.recipeSteps == null;
+        if (reacts != null ? !reacts.equals(recipe.reacts) : recipe.reacts != null) return false;
+        if (recipeSteps != null ? !recipeSteps.equals(recipe.recipeSteps) : recipe.recipeSteps != null) return false;
+        return favority != null ? favority.equals(recipe.favority) : recipe.favority == null;
 
     }
 
@@ -281,13 +287,16 @@ public class Recipe implements Serializable {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (difficulty != null ? difficulty.hashCode() : 0);
         result = 31 * result + (recipeBooks != null ? recipeBooks.hashCode() : 0);
+        result = 31 * result + (recipeBooksName != null ? recipeBooksName.hashCode() : 0);
         result = 31 * result + (recipeIngredients != null ? recipeIngredients.hashCode() : 0);
         result = 31 * result + (categories != null ? categories.hashCode() : 0);
-        result = 31 * result + (prepTime != null ? prepTime.hashCode() : 0);
-        result = 31 * result + (cookTime != null ? cookTime.hashCode() : 0);
+        result = 31 * result + prepTime;
+        result = 31 * result + cookTime;
+        result = 31 * result + (picture != null ? picture.hashCode() : 0);
         result = 31 * result + (chef != null ? chef.hashCode() : 0);
         result = 31 * result + (reacts != null ? reacts.hashCode() : 0);
         result = 31 * result + (recipeSteps != null ? recipeSteps.hashCode() : 0);
+        result = 31 * result + (favority != null ? favority.hashCode() : 0);
         return result;
     }
 }
