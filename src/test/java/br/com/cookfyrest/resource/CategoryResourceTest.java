@@ -28,9 +28,9 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 /**
  * Created by Andrei Andrade on 27/11/2016.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Main.class)
-@WebAppConfiguration
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = Main.class)
+//@WebAppConfiguration
 public class CategoryResourceTest {
 
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
@@ -70,7 +70,7 @@ public class CategoryResourceTest {
 //        this.bookmarkList.add(bookmarkRepository.save(new Bookmark(account, "http://bookmark.com/2/" + userName, "A description")));
     }
 
-    @Test
+//    @Test
     public void readCategories() throws Exception {
         mockMvc.perform(get("/categories")
                 .content(this.json(new Category()))
@@ -86,7 +86,7 @@ public class CategoryResourceTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
+//    @Test
     public void singleCategoryNotFound() throws Exception {
         mockMvc.perform(get("/categories/100")
                 .content(this.json(new Category()))
