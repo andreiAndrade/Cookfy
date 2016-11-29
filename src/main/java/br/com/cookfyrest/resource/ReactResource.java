@@ -1,12 +1,15 @@
 package br.com.cookfyrest.resource;
 
 import br.com.cookfyrest.model.entity.React;
+import br.com.cookfyrest.model.entity.Recipe;
+import br.com.cookfyrest.model.entity.User;
 import br.com.cookfyrest.repository.ReactRepository;
 import br.com.cookfyrest.repository.RecipeRepository;
 import br.com.cookfyrest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,9 +33,16 @@ public class ReactResource {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void react(@RequestBody React react) {
-        react.setRecipe(recipeRepo.findOne(react.getRecipeId()));
-        react.setUser(userRepo.findOne(react.getUserId()));
+        Recipe recipe = recipeRepo.findOne(react.getRecipeId());
+        User user = userRepo.findOne(react.getUserId());
 
-        reactRepo.save(react);
+        if (user != null && recipe != null) {
+            react.setRecipe(recipe);
+            react.setUser(user);
+            reactRepo.save(react);
+        } else {
+            ResponseEntity.badRequest();
+        }
+
     }
 }

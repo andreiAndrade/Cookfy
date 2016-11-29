@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cookfyrest.model.entity.Category;
 import br.com.cookfyrest.repository.CategoryRepository;
 
+import java.util.List;
+
 @RestController
 @EnableAutoConfiguration
 @RequestMapping(value="/categories")
@@ -24,8 +26,13 @@ public class CategoryResource {
 	@RequestMapping(
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Iterable<Category> listCategories(){
-		return categoryRepository.findAll();
+	public ResponseEntity<List<Category>> listCategories(){
+		List<Category> categories = (List<Category>) categoryRepository.findAll();
+		if (!categories.isEmpty()) {
+			return new ResponseEntity<>(categories, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(
