@@ -1,11 +1,11 @@
-INSERT INTO user_tab (date_created, date_updated, email, name, username)
-VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'andrei@gmail.com', 'andrei andrade', 'andrei');
-INSERT INTO user_tab (date_created, date_updated, email, name, username)
-VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'paula@gmail.com', 'paula bol', 'paula');
-INSERT INTO user_tab (date_created, date_updated, email, name, username)
-VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'bruno@gmail.com', 'bruno fontenelle', 'bruno');
-INSERT INTO user_tab (date_created, date_updated, email, name, username)
-VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'thiago@gmail.com', 'thiago mazuhim', 'thiago');
+INSERT INTO user_tab (date_created, date_updated, email, name, username, picture)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'andrei@gmail.com', 'andrei andrade', 'andrei', '');
+INSERT INTO user_tab (date_created, date_updated, email, name, username, picture)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'paula@gmail.com', 'paula bol', 'paula', '');
+INSERT INTO user_tab (date_created, date_updated, email, name, username, picture)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'bruno@gmail.com', 'bruno fontenelle', 'bruno', '');
+INSERT INTO user_tab (date_created, date_updated, email, name, username, picture)
+VALUES ('2015-09-09 21:46:44', '2015-09-09 21:46:44', 'thiago@gmail.com', 'thiago mazuhim', 'thiago', '');
 
 INSERT INTO user_identity (user_id, hash, adapter, date_created, date_updated)
 VALUES (1, 'andrei', 'application', '2015-09-09 21:46:44', '2015-09-09 21:46:44');
