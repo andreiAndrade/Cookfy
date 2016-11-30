@@ -1,7 +1,10 @@
 package br.com.cookfyrest.resource;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.zip.CRC32;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -38,57 +41,45 @@ public class RecipeBookResource {
 	@RequestMapping(
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<RecipeBook> listRecipeBooksOfUser(@RequestParam(value = "userId") long user_id){
-//		List<RecipeBook> listaLivros = new ArrayList<RecipeBook>();
-//		RecipeBook book = new RecipeBook();
-//		User user = new User("Bruno", "blabla@blabla", "usernamedoBruno");
-//		
-//		book.setName("Cafe da manha");
-//		book.setId((long) 1);
-//		book.setUser(user);
-//		
-//		
-//		listaLivros.add(book);
-//		
-//		
-//		return listaLivros;
-		return repository.findByUserId(user_id);
+	public ResponseEntity<List<RecipeBook>> listRecipeBooksOfUser(@RequestParam(value = "userId", required = false) Long user_id){
+		List<RecipeBook> recipeBooks = null;
+
+		if (user_id != null) {
+			recipeBooks = repository.findByUserId(user_id);
+		} else {
+			recipeBooks = (List<RecipeBook>) repository.findAll();
+		}
+
+		if (!recipeBooks.isEmpty()) {
+			return new ResponseEntity<>(recipeBooks, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
-	
+
 	@RequestMapping(value = "{bookId}",
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public RecipeBook listRecipesOfRecipeBook(@PathVariable(value = "bookId") long book_id){
-//		List<Recipe> listaReceitas = new ArrayList<Recipe>();
-//		
-//		Recipe recipe1 = new Recipe();
-//		Recipe recipe2 = new Recipe();
-//		Recipe recipe3  = new Recipe();
-//		Recipe recipe4 = new Recipe();
-//		
-//		recipe1.setName("Bolo");
-//		recipe2.setName("Massa");
-//		recipe3.setName("Pastel");
-//		recipe4.setName("Hot dog");
-//		
-//		listaReceitas.add(recipe1);
-//		listaReceitas.add(recipe2);
-//		listaReceitas.add(recipe3);
-//		listaReceitas.add(recipe4);
-//		
-//		return listaReceitas;
-		return repository.findOne(book_id);
+	public ResponseEntity<RecipeBook> listRecipesOfRecipeBook(@PathVariable(value = "bookId") long book_id){
+		RecipeBook recipeBook = repository.findOne(book_id);
+		if (Objects.nonNull(recipeBook)) {
+			return new ResponseEntity<>(recipeBook, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public RecipeBook createRecipeBook(@RequestBody RecipeBookDTO recipeBookDTO){
+	public ResponseEntity<RecipeBook> createRecipeBook(@RequestBody RecipeBookDTO recipeBookDTO){
+		if (Objects.isNull(recipeBookDTO)) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		RecipeBook recipeBook = new RecipeBook(
 				recipeBookDTO.getName(), 
 				userRepository.findOne(recipeBookDTO.getUser_id()));
-		
-		repository.save(recipeBook);
-		//return new ResponseEntity<>(repository.findOne(recipeBook.getId()), HttpStatus.OK);
-		return repository.findOne(recipeBook.getId());
+
+		recipeBook = repository.save(recipeBook);
+		return new ResponseEntity<>(recipeBook, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(
@@ -99,13 +90,8 @@ public class RecipeBookResource {
 	public RecipeBook addRecipeToRecipeBook(
 			@PathVariable("bookId") long book_id, @PathVariable("recipeId") long recipe_id){
 	
-//		RecipeBook book = repository.findOne(book_id);
-//		for (Recipe i : recipe_ids){
-//			book.addRecipe(i);
-//		}
-//		repository.save(book);
-		
 		RecipeBook book = repository.findOne(book_id);
+
 		book.addRecipe(recipeRepository.findOne(recipe_id));
 		repository.save(book);
 		
@@ -123,7 +109,6 @@ public class RecipeBookResource {
 		
 		RecipeBook book = repository.findOne(book_id);
 		book.deleteRecipe(recipeRepository.findOne(recipe_id));
-		
 		return repository.findOne(book_id);
 	}
 	

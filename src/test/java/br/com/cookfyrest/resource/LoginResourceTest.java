@@ -16,17 +16,17 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 /**
  * Created by Andrei.Richard on 29/11/2016.
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(classes = Main.class)
-//@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Main.class)
+@WebAppConfiguration
 public class LoginResourceTest extends AbstractTest {
 
-//    @Before
+    @Before
     public void setup() throws Exception {
         super.mockMvc = webAppContextSetup(super.webApplicationContext).build();
     }
 
-//    @Test
+    @Test
     public void successLogin() throws Exception {
         super.mockMvc.perform(get("/login?username=andrei&hash=andrei")
                 .content(super.json(new AuthenticationDTO()))
@@ -34,7 +34,7 @@ public class LoginResourceTest extends AbstractTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
+    @Test
     public void failedLogin() throws Exception {
         super.mockMvc.perform(get("/login?username=jose&hash=jose")
                 .content(super.json(new AuthenticationDTO()))
@@ -42,7 +42,7 @@ public class LoginResourceTest extends AbstractTest {
                 .andExpect(status().isNoContent());
     }
 
-//    @Test
+    @Test
     public void requestWithoutParameter() throws Exception {
         super.mockMvc.perform(get("/login")
                 .content(super.json(new AuthenticationDTO()))

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -42,8 +43,13 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User findUser(@PathVariable(name = "id") Long id) {
-        return userRepo.findOne(id);
+    public ResponseEntity<User> findUser(@PathVariable(name = "id") Long id) {
+        User user = userRepo.findOne(id);
+        if (Objects.nonNull(user)) {
+            return ResponseEntity.status(HttpStatus.OK).body(user);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @RequestMapping(method = RequestMethod.PUT, path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -61,12 +67,14 @@ public class UserResource {
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public User updateUser(@RequestBody User user) {
-        return this.userRepo.save(user);
+        User oldUser = userRepo.findByUsernameOrEmail(user.getUsername(), user.getEmail());
+        return this.userRepo.save(oldUser);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteUser(@RequestBody User user) {
-        this.userRepo.delete(user);
+        User oldUser = userRepo.findByUsernameOrEmail(user.getUsername(), user.getEmail());
+        this.userRepo.delete(oldUser);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}/reacts")

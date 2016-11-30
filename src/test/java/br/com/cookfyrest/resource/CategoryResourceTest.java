@@ -16,12 +16,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 /**
  * Created by Andrei Andrade on 27/11/2016.
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(classes = Main.class)
-//@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = Main.class)
+@WebAppConfiguration
 public class CategoryResourceTest extends AbstractTest {
 
-//    @Before
+    @Before
     public void setup() throws Exception {
         super.mockMvc = webAppContextSetup(super.webApplicationContext).build();
 
@@ -33,7 +33,7 @@ public class CategoryResourceTest extends AbstractTest {
 //        this.bookmarkList.add(bookmarkRepository.save(new Bookmark(account, "http://bookmark.com/2/" + userName, "A description")));
     }
 
-//    @Test
+    @Test
     public void readCategories() throws Exception {
         super.mockMvc.perform(get("/categories")
                 .content(super.json(new Category()))
@@ -41,7 +41,7 @@ public class CategoryResourceTest extends AbstractTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
+    @Test
     public void readSingleCategory() throws Exception {
         super.mockMvc.perform(get("/categories/1")
                 .content(this.json(new Category()))
@@ -49,7 +49,7 @@ public class CategoryResourceTest extends AbstractTest {
                 .andExpect(status().isOk());
     }
 
-//    @Test
+    @Test
     public void singleCategoryNotFound() throws Exception {
         super.mockMvc.perform(get("/categories/100")
                 .content(this.json(new Category()))
