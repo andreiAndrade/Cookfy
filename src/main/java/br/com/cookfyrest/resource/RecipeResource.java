@@ -95,13 +95,9 @@ public class RecipeResource {
 
         List<RecipeSearchPriority> listOfPriorities = new ArrayList<>();
 
-        System.out.println(ingredients[0]);
-
-
         for (String ingredient_name : ingredients) {
             List<Recipe> listOfRecipesOfAnIngredient = new ArrayList<Recipe>();
-            Ingredient ingredient = ingredientRepo.findByName(ingredient_name);
-            System.out.println(ingredient.getName());
+            Ingredient ingredient = ingredientRepo.findByNameIgnoreCase(ingredient_name);
             listOfIngredients.add(ingredient);
 
             if (ingredient != null) {
@@ -160,7 +156,10 @@ public class RecipeResource {
         String description = "";
         Recipe recipe = new Recipe();
         List<Category> category = new ArrayList<Category>();
-        category.add(categoryRepo.findOne(recipeDTO.getCategory_id()));
+        
+        for(Long categoryToBeAdded : recipeDTO.getCategory_id()){
+        	category.add(categoryRepo.findOne(categoryToBeAdded));
+        }
 
         for (RecipeStep step : recipeDTO.getRecipeStep()) {
             description = description + step.getDescription() + ";";
@@ -184,7 +183,7 @@ public class RecipeResource {
         //ingrediente vem como uma lista de strings - ingredient;measure
         for (String i : recipeDTO.getIngredient_measure()) {
             String[] ingredientAndMeasure = i.split(";");
-            Ingredient ingredient = ingredientRepo.findByName(ingredientAndMeasure[0]);
+            Ingredient ingredient = ingredientRepo.findByNameIgnoreCase(ingredientAndMeasure[0]);
 
             if (ingredient == null) {
                 ingredient = ingredientRepo.save(new Ingredient(ingredientAndMeasure[0]));
@@ -235,7 +234,7 @@ public class RecipeResource {
     public List<Recipe> findByName(@RequestParam(name = "name") String name) {
         String preparedName = prepareNameForQuery(name);
 
-        return recipeRepo.findByName(preparedName);
+        return recipeRepo.findByNameIgnoreCase(preparedName);
     }
 
     private String prepareNameForQuery(String name) {

@@ -18,5 +18,5 @@ public interface RecipeRepository extends PagingAndSortingRepository<Recipe, Lon
 	List<Recipe> findRecipeByChef(User chef);
 
 	@Query("select r from Recipe r where lower(r.name) like lower(:name)")
-	List<Recipe> findByName(@Param("name") String name);
+	List<Recipe> findByNameIgnoreCase(@Param("name") String name);
 }

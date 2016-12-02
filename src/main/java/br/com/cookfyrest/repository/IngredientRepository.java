@@ -5,5 +5,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import br.com.cookfyrest.model.entity.Ingredient;
 
 public interface IngredientRepository extends PagingAndSortingRepository<Ingredient, Long>{
-	public Ingredient findByName(String ingredient_name);
+	public Ingredient findByNameIgnoreCase(String ingredient_name);
 }
