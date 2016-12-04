@@ -17,25 +17,40 @@ import java.util.Objects;
 @XmlRootElement
 @JsonIdentityInfo(generator = JSOGGenerator.class)
 public class Ingredient implements Serializable {
-
     @Transient
     private static final String SEQ = "seq_ingredient";
-
     @Id
     @SequenceGenerator(name = SEQ, sequenceName = SEQ, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = SEQ)
     private Long id;
 
+    
     private String name;
 
     private String description;
+    
+    @Column( length = 10485760 )
+    private String picture;
 
-    @OneToMany(mappedBy = "ingredient", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	@OneToMany(mappedBy = "ingredient", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<RecipeIngredient> recipeIngredients;
 
     public Ingredient(){};
     public Ingredient(String name){
     	this.name = name;
+    }
+    
+    public Ingredient(String name, String description, String picture){
+    	this.name = name;
+    	this.description = description;
+    	this.picture = picture;
     }
     
     public Long getId() {

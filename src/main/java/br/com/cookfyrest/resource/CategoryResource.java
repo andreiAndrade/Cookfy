@@ -65,7 +65,4 @@ public class CategoryResource {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
-	
-	
-	
 }
