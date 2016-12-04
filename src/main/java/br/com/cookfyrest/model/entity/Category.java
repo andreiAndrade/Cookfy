@@ -28,8 +28,19 @@ public class Category implements Serializable {
     private String name;
 
     private String description;
+    
+    @Column( length = 10485760 )
+    private String picture;
 
-    @ManyToMany
+    public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
+	@ManyToMany
     @JoinTable(
             name = "RECIPE_CATEGORY",
             joinColumns = {

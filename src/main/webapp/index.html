@@ -283,5 +283,22 @@ success response:<br>
 receita<br>
 }<br>
 <br>
+//cria categoria<br>
+http://cookfy.herokuapp.com/categories<br>
+method: POST<br>
+request:<br>
+{<br>
+	"name": "String",<br>
+	"description": "String",<br>
+	"picture": "String"<br>
+}<br>
+response:<br>
+{<br>
+  "id": long,<br>
+  "name": "String",<br>
+  "description": "String",<br>
+  "picture": "String",<br>
+  "recipes": []<br>
+}<br>
 </body>
 </html>
